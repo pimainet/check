@@ -55,12 +55,9 @@
         text-align: center;
         font-size: 2.4rem;
         font-weight: 900;
-        color: #00ffcc;
-        text-shadow: 0 0 3px #00ffcc, 0 0 6px #00ffcc;
-        -webkit-text-stroke: 0.5px #003333;
+        color: #00ffdd;
         margin-bottom: 15px;
-        animation: glitch 2s linear infinite,
-          neon 1.5s ease-in-out infinite alternate;
+        animation: glitch 2s linear infinite;
         position: relative;
       }
 
@@ -75,15 +72,6 @@
         }
         62% {
           transform: translate(0, 0) skew(5deg);
-        }
-      }
-
-      @keyframes neon {
-        from {
-          text-shadow: 0 0 3px #00ffcc, 0 0 6px #00ffcc, 0 0 9px #00ffcc;
-        }
-        to {
-          text-shadow: 0 0 5px #00ffcc, 0 0 9px #00ffcc, 0 0 12px #00ffcc;
         }
       }
 
@@ -137,17 +125,17 @@
 
       @keyframes glowBorder {
         0% {
-          border-color: #00ffcc;
+          border-color: #00ffdd;
           box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
             0 0 25px rgba(255, 0, 204, 0.4);
         }
         50% {
-          border-color: #ff00cc;
+          border-color: #ff00dd;
           box-shadow: 0 0 20px rgba(255, 0, 204, 0.6),
             0 0 30px rgba(0, 255, 255, 0.6);
         }
         100% {
-          border-color: #00ffcc;
+          border-color: #00ffdd;
           box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
             0 0 25px rgba(255, 0, 204, 0.4);
         }
@@ -174,7 +162,7 @@
         position: absolute;
         width: 6px;
         height: 6px;
-        background: #00ffcc;
+        background: #00ffdd;
         border-radius: 50%;
         animation: orbit 4s linear infinite;
       }
@@ -192,14 +180,14 @@
       @keyframes orbit {
         0% {
           transform: rotate(0deg) translateX(20px) rotate(0deg);
-          background: #00ffcc;
+          background: #00ffdd;
         }
         50% {
-          background: #ff00cc;
+          background: #ff00dd;
         }
         100% {
           transform: rotate(360deg) translateX(20px) rotate(-360deg);
-          background: #00ffcc;
+          background: #00ffdd;
         }
       }
 
@@ -211,14 +199,14 @@
       @keyframes orbitHover {
         0% {
           transform: rotate(0deg) translateX(25px) rotate(0deg);
-          background: #00ffcc;
+          background: #00ffdd;
         }
         50% {
-          background: #ff00cc;
+          background: #ff00dd;
         }
         100% {
           transform: rotate(360deg) translateX(25px) rotate(-360deg);
-          background: #00ffcc;
+          background: #00ffdd;
         }
       }
 
@@ -232,16 +220,23 @@
         display: inline-block;
         overflow: hidden;
         white-space: nowrap;
+        font-kerning: normal;
+        letter-spacing: 0.5px;
+        line-height: 1.5;
         animation: colorShift 6s ease-in-out infinite;
       }
 
       .member-name span {
         display: inline-block;
+        width: auto;
+        min-width: 0.6rem;
+        text-align: center;
         opacity: 0;
-        animation: fadeInLetter 0.5s ease-in forwards;
+        animation: fadeInLetter 0.5s ease-in forwards,
+          wave 0.5s ease-in-out forwards;
       }
 
-      /* Tạo độ trễ cho từng chữ cái */
+      /* Tạo độ trễ cho fade-in và wave */
       .member-name span:nth-child(1) {
         animation-delay: 0.5s;
       }
@@ -290,18 +285,44 @@
         }
       }
 
+      @keyframes wave {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Hiệu ứng sóng khi hover */
+      .member-name:hover span {
+        animation: waveHover 0.3s ease-in-out infinite;
+      }
+
+      @keyframes waveHover {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-3px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
       @keyframes colorShift {
         0% {
           color: #00ffdd;
-          text-shadow: 0 0 3px #00ffdd, 0 0 6px #00ffdd;
         }
         50% {
           color: #ff00dd;
-          text-shadow: 0 0 3px #ff00dd, 0 0 6px #ff00dd;
         }
         100% {
           color: #00ffdd;
-          text-shadow: 0 0 3px #00ffdd, 0 0 6px #00ffdd;
         }
       }
 
@@ -351,20 +372,44 @@
         }
       }
 
-      .member-name:hover {
-        text-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff;
-        animation: waveLight 1s ease-in-out;
+      /* Underline animation cho tên */
+      .member-name::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #00ffdd, #ff00dd);
+        animation: underline 1.5s linear forwards;
+        animation-delay: 0.5s;
       }
 
-      @keyframes waveLight {
+      @keyframes underline {
         0% {
-          text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
-        }
-        50% {
-          text-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff, -10px 0 15px #00ffdd;
+          width: 0;
         }
         100% {
-          text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+          width: 100%;
+        }
+      }
+
+      .member-name:hover::after {
+        animation: underlineHover 1s linear infinite;
+      }
+
+      @keyframes underlineHover {
+        0% {
+          width: 100%;
+          left: 0;
+        }
+        50% {
+          width: 0;
+          left: 100%;
+        }
+        100% {
+          width: 100%;
+          left: 0;
         }
       }
 
@@ -495,64 +540,64 @@
         animation-delay: 1.4s;
       }
       .wallet-address .wallet-content span:nth-child(20) {
-        animation-delay: 1.45s;
-      }
-      .wallet-address .wallet-content span:nth-child(21) {
         animation-delay: 1.5s;
       }
-      .wallet-address .wallet-content span:nth-child(22) {
+      .wallet-address .wallet-content span:nth-child(21) {
         animation-delay: 1.55s;
       }
-      .wallet-address .wallet-content span:nth-child(23) {
+      .wallet-address .wallet-content span:nth-child(22) {
         animation-delay: 1.6s;
       }
-      .wallet-address .wallet-content span:nth-child(24) {
+      .wallet-address .wallet-content span:nth-child(23) {
         animation-delay: 1.65s;
       }
-      .wallet-address .wallet-content span:nth-child(25) {
+      .wallet-address .wallet-content span:nth-child(24) {
         animation-delay: 1.7s;
       }
-      .wallet-address .wallet-content span:nth-child(26) {
+      .wallet-address .wallet-content span:nth-child(25) {
         animation-delay: 1.75s;
       }
-      .wallet-address .wallet-content span:nth-child(27) {
+      .wallet-address .wallet-content span:nth-child(26) {
         animation-delay: 1.8s;
       }
-      .wallet-address .wallet-content span:nth-child(28) {
+      .wallet-address .wallet-content span:nth-child(27) {
         animation-delay: 1.85s;
       }
-      .wallet-address .wallet-content span:nth-child(29) {
+      .wallet-address .wallet-content span:nth-child(28) {
         animation-delay: 1.9s;
       }
-      .wallet-address .wallet-content span:nth-child(30) {
+      .wallet-address .wallet-content span:nth-child(29) {
         animation-delay: 1.95s;
       }
-      .wallet-address .wallet-content span:nth-child(31) {
+      .wallet-address .wallet-content span:nth-child(30) {
         animation-delay: 2s;
       }
-      .wallet-address .wallet-content span:nth-child(32) {
+      .wallet-address .wallet-content span:nth-child(31) {
         animation-delay: 2.05s;
       }
-      .wallet-address .wallet-content span:nth-child(33) {
+      .wallet-address .wallet-content span:nth-child(32) {
         animation-delay: 2.1s;
       }
-      .wallet-address .wallet-content span:nth-child(34) {
+      .wallet-address .wallet-content span:nth-child(33) {
         animation-delay: 2.15s;
       }
-      .wallet-address .wallet-content span:nth-child(35) {
+      .wallet-address .wallet-content span:nth-child(34) {
         animation-delay: 2.2s;
       }
-      .wallet-address .wallet-content span:nth-child(36) {
+      .wallet-address .wallet-content span:nth-child(35) {
         animation-delay: 2.25s;
       }
-      .wallet-address .wallet-content span:nth-child(37) {
+      .wallet-address .wallet-content span:nth-child(36) {
         animation-delay: 2.3s;
       }
-      .wallet-address .wallet-content span:nth-child(38) {
+      .wallet-address .wallet-content span:nth-child(37) {
         animation-delay: 2.35s;
       }
-      .wallet-address .wallet-content span:nth-child(39) {
+      .wallet-address .wallet-content span:nth-child(38) {
         animation-delay: 2.4s;
+      }
+      .wallet-address .wallet-content span:nth-child(39) {
+        animation-delay: 2.45s;
       }
 
       /* Matrix rain effect cho ví */
@@ -598,7 +643,6 @@
 
       .wallet-address:hover .wallet-content {
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-        animation: waveLight 1s ease-in-out;
       }
 
       @keyframes borderGlow {
@@ -745,7 +789,6 @@
 
       .contact a:hover {
         text-decoration: underline;
-        text-shadow: 0 0 5px #00ffdd;
       }
 
       /* Responsive */
@@ -920,7 +963,7 @@
       // Danh sách dữ liệu thành viên
       const memberData = {
         "001": {
-          name: "Hoàng Văn Minh ",
+          name: "Nguyễn Văn A",
           avatar:
             "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
           wallet_address: "fgdsghgfhgjhgjhgjddgdfgdsgdfg",
@@ -942,11 +985,11 @@
           explorer_link: "https://piscan.io/account/MNO456PQR789STU123VWX456YZ",
         },
         "004": {
-          name: "LÊ THỊ HƯƠNG ",
-          avatar: "https://scontent.fthd2-4.fna.fbcdn.net/v/t39.30808-6/491577955_1189938295959905_8489318223622425228_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEKaNmN3EMNo5OPTJm-RTXghTawRiFc5_WFNrBGIVzn9Ru16jvb4yNoeTmWk3xiLZ9qkucZiptZAKXVCXh6-qhQ&_nc_ohc=XsGUn2tjS18Q7kNvwGmpi4-&_nc_oc=AdmTx9BTl2UKWp94btd4tMJRKnEbS5WceXszgrJ_EZgbxBXUsFgK8IDuYfMrcCQbyrRhC1MBxsVRSGZA852cw4sz&_nc_zt=23&_nc_ht=scontent.fthd2-4.fna&_nc_gid=9yomIWlBUAh83U6ENEt4Kw&oh=00_AfFb9s9k0xdsMtfF4H9cXikQXb4JxZlHTA7yZQZsz12g6g&oe=6810B70E",
-          wallet_address: "GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+          name: "Phạm Thị D",
+          avatar: "https://via.placeholder.com/100?text=Member4",
+          wallet_address: "xyz789abc123mno456pqr789stu",
           explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+            "https://piscan.io/account/XYZ789ABC123MNO456PQR789STU",
         },
       };
 
@@ -980,7 +1023,7 @@
         walletInput.value = member.wallet_address;
         explorerLink.href = member.explorer_link;
 
-        // Matrix rain + fade-in cho tên
+        // Matrix rain + fade-in + wave cho tên
         memberName.innerHTML = "";
         const name = member.name;
         for (let i = 0; i < name.length; i++) {
