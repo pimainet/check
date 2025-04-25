@@ -84,11 +84,12 @@
         }
       }
 
-      /* Avatar styles */
+      /* Avatar section */
       .avatar-section {
         text-align: center;
         margin-bottom: 20px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
@@ -100,58 +101,274 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: visible;
       }
 
       .avatar {
         width: 100px;
         height: 100px;
-        border-radius: 0;
+        border-radius: 8px;
         object-fit: cover;
-        border: 4px solid;
-        border-image: linear-gradient(45deg, #00ffcc, #ff00cc) 1;
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
-          0 0 30px rgba(255, 0, 204, 0.5);
-        animation: pulse 2s ease-in-out infinite, glow 3s ease-in-out infinite;
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
-        will-change: transform, box-shadow;
+        border: 4px solid transparent;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+          0 0 25px rgba(255, 0, 204, 0.4);
+        animation: hologramWave 3s ease-in-out infinite,
+          glowBorder 5s ease-in-out infinite;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        z-index: 1;
       }
 
-      @keyframes pulse {
+      @keyframes hologramWave {
         0% {
-          transform: scale(1);
+          filter: brightness(1) contrast(1);
         }
         50% {
-          transform: scale(1.1);
+          filter: brightness(1.2) contrast(1.1)
+            drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
         }
         100% {
-          transform: scale(1);
+          filter: brightness(1) contrast(1);
         }
       }
 
-      @keyframes glow {
+      @keyframes glowBorder {
         0% {
-          box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
-            0 0 30px rgba(255, 0, 204, 0.5);
+          border-color: #00ffcc;
+          box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+            0 0 25px rgba(255, 0, 204, 0.4);
         }
         50% {
-          box-shadow: 0 0 30px rgba(0, 255, 255, 0.7),
-            0 0 40px rgba(255, 0, 204, 0.7);
+          border-color: #ff00cc;
+          box-shadow: 0 0 20px rgba(255, 0, 204, 0.6),
+            0 0 30px rgba(0, 255, 255, 0.6);
         }
         100% {
-          box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
-            0 0 30px rgba(255, 0, 204, 0.5);
+          border-color: #00ffcc;
+          box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+            0 0 25px rgba(255, 0, 204, 0.4);
         }
       }
 
       .avatar:hover {
-        animation-play-state: paused;
-        box-shadow: 0 0 40px rgba(0, 255, 255, 0.8),
-          0 0 50px rgba(255, 0, 204, 0.8);
         transform: scale(1.1);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.8),
+          0 0 40px rgba(255, 0, 204, 0.8);
+        filter: brightness(1.3) contrast(1.2);
       }
 
+      /* Orbiting particles */
+      .avatar-effects {
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        z-index: 0;
+      }
+
+      .avatar-effects::before,
+      .avatar-effects::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #00ffcc;
+        border-radius: 50%;
+        animation: orbit 4s linear infinite;
+      }
+
+      .avatar-effects::before {
+        animation-delay: 0s;
+        transform-origin: 70px;
+      }
+
+      .avatar-effects::after {
+        animation-delay: -2s;
+        transform-origin: 70px;
+      }
+
+      @keyframes orbit {
+        0% {
+          transform: rotate(0deg) translateX(20px) rotate(0deg);
+          background: #00ffcc;
+        }
+        50% {
+          background: #ff00cc;
+        }
+        100% {
+          transform: rotate(360deg) translateX(20px) rotate(-360deg);
+          background: #00ffcc;
+        }
+      }
+
+      .avatar:hover + .avatar-effects::before,
+      .avatar:hover + .avatar-effects::after {
+        animation: orbitHover 2s linear infinite;
+      }
+
+      @keyframes orbitHover {
+        0% {
+          transform: rotate(0deg) translateX(25px) rotate(0deg);
+          background: #00ffcc;
+        }
+        50% {
+          background: #ff00cc;
+        }
+        100% {
+          transform: rotate(360deg) translateX(25px) rotate(-360deg);
+          background: #00ffcc;
+        }
+      }
+
+      /* Member name styles */
+      .member-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-top: 10px;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        animation: colorShift 6s ease-in-out infinite;
+      }
+
+      .member-name span {
+        display: inline-block;
+        opacity: 0;
+        animation: fadeInLetter 0.5s ease-in forwards;
+      }
+
+      /* Tạo độ trễ cho từng chữ cái */
+      .member-name span:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .member-name span:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .member-name span:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+      .member-name span:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      .member-name span:nth-child(5) {
+        animation-delay: 0.9s;
+      }
+      .member-name span:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .member-name span:nth-child(7) {
+        animation-delay: 1.1s;
+      }
+      .member-name span:nth-child(8) {
+        animation-delay: 1.2s;
+      }
+      .member-name span:nth-child(9) {
+        animation-delay: 1.3s;
+      }
+      .member-name span:nth-child(10) {
+        animation-delay: 1.4s;
+      }
+      .member-name span:nth-child(11) {
+        animation-delay: 1.5s;
+      }
+      .member-name span:nth-child(12) {
+        animation-delay: 1.6s;
+      }
+
+      @keyframes fadeInLetter {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes colorShift {
+        0% {
+          color: #00ffcc;
+          text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+        }
+        50% {
+          color: #ff00cc;
+          text-shadow: 0 0 5px #ff00cc, 0 0 10px #ff00cc;
+        }
+        100% {
+          color: #00ffcc;
+          text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+        }
+      }
+
+      /* Matrix rain effect cho tên */
+      .member-name::before {
+        content: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #00ffcc;
+        opacity: 0.5;
+        font-size: 1.5rem;
+        white-space: nowrap;
+        animation: matrixRain 1s linear forwards;
+        pointer-events: none;
+      }
+
+      @keyframes matrixRain {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+
+      /* Cursor blink cho tên */
+      .member-name::after {
+        content: "|";
+        position: absolute;
+        right: -10px;
+        color: #00ffcc;
+        animation: cursorBlink 1s step-end infinite;
+        animation-delay: 2s;
+      }
+
+      @keyframes cursorBlink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .member-name:hover {
+        text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff;
+        animation: waveLight 1s ease-in-out;
+      }
+
+      @keyframes waveLight {
+        0% {
+          text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+        }
+        50% {
+          text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff, -10px 0 20px #00ffcc;
+        }
+        100% {
+          text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+        }
+      }
+
+      /* Wallet address styles */
       .wallet-address {
         margin-bottom: 20px;
+        position: relative;
       }
 
       .wallet-address label {
@@ -180,6 +397,204 @@
         box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         animation: borderGlow 3s ease-in-out infinite;
         transition: all 0.3s ease;
+        position: relative;
+        animation: colorShift 6s ease-in-out infinite;
+      }
+
+      .wallet-address textarea[readonly] {
+        background: rgba(255, 255, 255, 0.1);
+        cursor: default;
+      }
+
+      .wallet-address .wallet-content {
+        width: 100%;
+        min-height: 60px;
+        padding: 10px;
+        border: 2px solid;
+        border-image: linear-gradient(45deg, #00ffcc, #ff00cc) 1;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        font-size: 1rem;
+        font-family: "Orbitron", sans-serif;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        animation: borderGlow 3s ease-in-out infinite,
+          colorShift 6s ease-in-out infinite;
+        position: relative;
+        display: inline-block;
+      }
+
+      .wallet-address .wallet-content span {
+        display: inline-block;
+        opacity: 0;
+        animation: fadeInLetter 0.5s ease-in forwards;
+      }
+
+      /* Tạo độ trễ cho từng ký tự ví */
+      .wallet-address .wallet-content span:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .wallet-address .wallet-content span:nth-child(2) {
+        animation-delay: 0.55s;
+      }
+      .wallet-address .wallet-content span:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .wallet-address .wallet-content span:nth-child(4) {
+        animation-delay: 0.65s;
+      }
+      .wallet-address .wallet-content span:nth-child(5) {
+        animation-delay: 0.7s;
+      }
+      .wallet-address .wallet-content span:nth-child(6) {
+        animation-delay: 0.75s;
+      }
+      .wallet-address .wallet-content span:nth-child(7) {
+        animation-delay: 0.8s;
+      }
+      .wallet-address .wallet-content span:nth-child(8) {
+        animation-delay: 0.85s;
+      }
+      .wallet-address .wallet-content span:nth-child(9) {
+        animation-delay: 0.9s;
+      }
+      .wallet-address .wallet-content span:nth-child(10) {
+        animation-delay: 0.95s;
+      }
+      .wallet-address .wallet-content span:nth-child(11) {
+        animation-delay: 1s;
+      }
+      .wallet-address .wallet-content span:nth-child(12) {
+        animation-delay: 1.05s;
+      }
+      .wallet-address .wallet-content span:nth-child(13) {
+        animation-delay: 1.1s;
+      }
+      .wallet-address .wallet-content span:nth-child(14) {
+        animation-delay: 1.15s;
+      }
+      .wallet-address .wallet-content span:nth-child(15) {
+        animation-delay: 1.2s;
+      }
+      .wallet-address .wallet-content span:nth-child(16) {
+        animation-delay: 1.25s;
+      }
+      .wallet-address .wallet-content span:nth-child(17) {
+        animation-delay: 1.3s;
+      }
+      .wallet-address .wallet-content span:nth-child(18) {
+        animation-delay: 1.35s;
+      }
+      .wallet-address .wallet-content span:nth-child(19) {
+        animation-delay: 1.4s;
+      }
+      .wallet-address .wallet-content span:nth-child(20) {
+        animation-delay: 1.45s;
+      }
+      .wallet-address .wallet-content span:nth-child(21) {
+        animation-delay: 1.5s;
+      }
+      .wallet-address .wallet-content span:nth-child(22) {
+        animation-delay: 1.55s;
+      }
+      .wallet-address .wallet-content span:nth-child(23) {
+        animation-delay: 1.6s;
+      }
+      .wallet-address .wallet-content span:nth-child(24) {
+        animation-delay: 1.65s;
+      }
+      .wallet-address .wallet-content span:nth-child(25) {
+        animation-delay: 1.7s;
+      }
+      .wallet-address .wallet-content span:nth-child(26) {
+        animation-delay: 1.75s;
+      }
+      .wallet-address .wallet-content span:nth-child(27) {
+        animation-delay: 1.8s;
+      }
+      .wallet-address .wallet-content span:nth-child(28) {
+        animation-delay: 1.85s;
+      }
+      .wallet-address .wallet-content span:nth-child(29) {
+        animation-delay: 1.9s;
+      }
+      .wallet-address .wallet-content span:nth-child(30) {
+        animation-delay: 1.95s;
+      }
+      .wallet-address .wallet-content span:nth-child(31) {
+        animation-delay: 2s;
+      }
+      .wallet-address .wallet-content span:nth-child(32) {
+        animation-delay: 2.05s;
+      }
+      .wallet-address .wallet-content span:nth-child(33) {
+        animation-delay: 2.1s;
+      }
+      .wallet-address .wallet-content span:nth-child(34) {
+        animation-delay: 2.15s;
+      }
+      .wallet-address .wallet-content span:nth-child(35) {
+        animation-delay: 2.2s;
+      }
+      .wallet-address .wallet-content span:nth-child(36) {
+        animation-delay: 2.25s;
+      }
+      .wallet-address .wallet-content span:nth-child(37) {
+        animation-delay: 2.3s;
+      }
+      .wallet-address .wallet-content span:nth-child(38) {
+        animation-delay: 2.35s;
+      }
+      .wallet-address .wallet-content span:nth-child(39) {
+        animation-delay: 2.4s;
+      }
+
+      /* Matrix rain effect cho ví */
+      .wallet-address .wallet-content::before {
+        content: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #00ffcc;
+        opacity: 0.5;
+        font-size: 1rem;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        animation: matrixRainWallet 1.5s linear forwards;
+        pointer-events: none;
+      }
+
+      @keyframes matrixRainWallet {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+
+      /* Cursor blink cho ví */
+      .wallet-address .wallet-content::after {
+        content: "|";
+        position: absolute;
+        right: -10px;
+        color: #00ffcc;
+        animation: cursorBlink 1s step-end infinite;
+        animation-delay: 3s;
+      }
+
+      .wallet-address:hover .wallet-content {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+        animation: waveLight 1s ease-in-out;
       }
 
       @keyframes borderGlow {
@@ -192,11 +607,6 @@
         100% {
           box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
-      }
-
-      .wallet-address textarea[readonly] {
-        background: rgba(255, 255, 255, 0.1);
-        cursor: default;
       }
 
       .action-buttons {
@@ -369,22 +779,40 @@
         .avatar {
           width: 80px;
           height: 80px;
-          border: 4px solid;
-          border-image: linear-gradient(45deg, #00ffcc, #ff00cc) 1;
-          box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+          border: 3px solid transparent;
+          box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
         }
 
         .avatar:hover {
-          box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+          box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        .avatar-effects {
+          width: 120px;
+          height: 120px;
+        }
+
+        .avatar-effects::before,
+        .avatar-effects::after {
+          width: 5px;
+          height: 5px;
+        }
+
+        .member-name {
+          font-size: 1.2rem;
         }
 
         .wallet-address label {
           font-size: 1.2rem;
         }
 
-        .wallet-address textarea {
-          font-size: 1.1rem;
-          height: 80px;
+        .wallet-address .wallet-content {
+          font-size: 0.9rem;
+          min-height: 80px;
+        }
+
+        .wallet-address .wallet-content::before {
+          font-size: 0.9rem;
         }
 
         .instructions h2 {
@@ -409,7 +837,7 @@
     <div class="container">
       <h1>Kiểm Tra Ví Pi</h1>
 
-      <!-- Avatar section -->
+      <!-- Avatar section with member name -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
           <img
@@ -418,13 +846,16 @@
             src="https://via.placeholder.com/100?text=Avatar"
             alt="Avatar"
           />
+          <div class="avatar-effects"></div>
         </div>
+        <div id="member-name" class="member-name">Chưa có thông tin</div>
       </div>
 
       <!-- Hiển thị địa chỉ ví -->
       <div class="wallet-address">
         <label for="wallet-address">Địa chỉ ví Pi của bạn:</label>
-        <textarea id="wallet-address" readonly>Chưa có địa chỉ ví</textarea>
+        <textarea id="wallet-address" readonly style="display: none"></textarea>
+        <div id="wallet-content" class="wallet-content">Chưa có địa chỉ ví</div>
       </div>
 
       <!-- Các nút hành động -->
@@ -437,14 +868,20 @@
 
       <!-- Hướng dẫn kiểm tra ví -->
       <div class="instructions">
-        <h2>Hướng dẫn kiểm tra ví</h2>
+        <h2>Hướng dẫn cho người mới</h2>
         <ol>
-          <li>Bấm kiểm tra ví, kéo xuống để thấy số dư.</li>
-          <li>Nếu muốn thấy lịch sử giao dịch thì chọn tap thanh toán bên cạnh số dư.</li>
-          <li>Nếu muốn xem ví có bị gán cờ hay không chọn tap cờ.</li>
-          
+          <li><a href="#">Hướng Dẫn Đăng Ký Sàn</a></li>
+          <li>Nhấn "Kiểm tra ví" để xem thông tin ví trên Piscan.</li>
+          <li>Xem số dư và lịch sử giao dịch của bạn.</li>
           <li>
-            Nếu cần hỗ trợ khác, liên hệ chúng tôi qua thông tin bên dưới.
+            Kiểm tra giao dịch bất thường:
+            <ul>
+              <li>Giao dịch gửi đi lớn (VD: >50 Pi).</li>
+              <li>Nhiều giao dịch gửi đi liên tiếp trong thời gian ngắn.</li>
+            </ul>
+          </li>
+          <li>
+            Nếu phát hiện vấn đề, liên hệ chúng tôi qua thông tin bên dưới.
           </li>
         </ol>
       </div>
@@ -460,48 +897,77 @@
       <div class="contact">
         <p>
           Có vấn đề? Liên hệ chúng tôi:
-          <a href="https://zalo.me/g/qardra541">ZALO NHÓM HỖ TRỢ </a> |
-          <a href="tel:+84983197621">GỌI NGAY </a>
+          <a href="mailto:support@yourcompany.com">support@yourcompany.com</a> |
+          <a href="tel:+1234567890">+123-456-7890</a>
         </p>
       </div>
+
+      <!-- Âm thanh Typing-6458 -->
+      <audio id="matrixSound" preload="auto">
+        <source
+          src="https://yourserver.com/typing-6458.mp3"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <script>
-      // Danh sách dữ liệu thành viên với tag_id ngắn gọn
+      // Danh sách dữ liệu thành viên
       const memberData = {
         "001": {
+          name: "Nguyễn Văn A",
           avatar:
-            "https://scontent.fthd2-4.fna.fbcdn.net/v/t39.30808-6/491917961_1727005108174242_2078688021012827982_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF110oOHlXOlTFF9oYk0r3yYQ1m-g7itQVhDWb6DuK1BZ3sucE9z-7uwDUarxY0D3CfbfU9tcST3gZTIhhGu6An&_nc_ohc=4SzFps2yJzUQ7kNvwEjbbI0&_nc_oc=AdlMsqLc3RERCRAr8_RTQcXggeezb4pl4YZO08T0thGyZgr8_LAKUgBtdlRfU6L2RQ2xeWiNRYVF3pyGu_sxpg5z&_nc_zt=23&_nc_ht=scontent.fthd2-4.fna&_nc_gid=dtniDu2DZ55ICNHJo_qrjA&oh=00_AfERXliRcf10MUr2gM61-LBBH5XSk83Q246B_TL5xeL2dA&oe=68095262",
-          wallet_address: "GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
+            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          wallet_address: "fgdsghgfhgjhgjhgjddgdfgdsgdfg",
           explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
+            "https://piscan.io/account/GDAANKWVGG4TAOWHGYDLP3JTRFCMWZILFATBJRFL54COWYNDL6KBAOYR",
         },
         "002": {
+          name: "Trần Thị B",
           avatar:
-            "https://scontent.fhph1-2.fna.fbcdn.net/v/t39.30808-6/492699756_1731235044417915_6926686615728386253_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeESMq1z4vY3_cdc7FNpRLXX-Do4J94DSQ_4Ojgn3gNJD36Imm0O7P0Hcww1PK4K5tib0aUuguYd9aU9QNpJYuc2&_nc_ohc=TsiF1pMTL8wQ7kNvwGGJoBL&_nc_oc=Adkm-Hc7XeCqzXATj8A_x7IBlesROh4gBSybSFhl8V7Gq89f2pUVZtnntA7izAA0ESZ1NEFJDulojhK1uMoJqXXU&_nc_zt=23&_nc_ht=scontent.fhph1-2.fna&_nc_gid=WwUUXUhyPoHYriQlLwpfWg&oh=00_AfFk5Yv_UfJVGkmJx_oluCJrNkMeJRBGybOx8wKipksW0w&oe=680CD29A",
-          wallet_address: "GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+          wallet_address: "abc123xyz456def789ghi000jkl",
           explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
+            "https://piscan.io/account/ABC123XYZ456DEF789GHI000JKL",
         },
         "003": {
-          avatar: "https://scontent.fthd2-4.fna.fbcdn.net/v/t39.30808-6/441079137_1281469949492602_4460653575748531125_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHWy__eqMCTsIswgr5PI3hTUElWmYkDrO9QSVaZiQOs72yqr5dlcxxaXEyyPnB06paQw4v6s96bLFguMxYMaoR9&_nc_ohc=OtWPH47rahsQ7kNvwHcOb7k&_nc_oc=Adn7CDnjxVXih8Pfnqmak75Ky0fhyzAIHGG7GHaPwtgjSq7i-9DNwAcwtJcxMyQiyiTCAY3LwUM7bQsVWgkHen0i&_nc_zt=23&_nc_ht=scontent.fthd2-4.fna&_nc_gid=3e2GBgvfYzmDezzaP9kTgw&oh=00_AfG_HRo-_9MZ0OLo8IctSTfH6-tw_P246s19ICLKFajchg&oe=680EA05A",
+          name: "Lê Văn C",
+          avatar: "https://via.placeholder.com/100?text=Member3",
           wallet_address: "mno456pqr789stu123vwx456yz",
           explorer_link: "https://piscan.io/account/MNO456PQR789STU123VWX456YZ",
         },
-        "004":{
-          avatar:"https://scontent.fthd2-4.fna.fbcdn.net/v/t39.30808-6/491577955_1189938295959905_8489318223622425228_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEKaNmN3EMNo5OPTJm-RTXghTawRiFc5_WFNrBGIVzn9Ru16jvb4yNoeTmWk3xiLZ9qkucZiptZAKXVCXh6-qhQ&_nc_ohc=XsGUn2tjS18Q7kNvwGmpi4-&_nc_oc=AdmTx9BTl2UKWp94btd4tMJRKnEbS5WceXszgrJ_EZgbxBXUsFgK8IDuYfMrcCQbyrRhC1MBxsVRSGZA852cw4sz&_nc_zt=23&_nc_ht=scontent.fthd2-4.fna&_nc_gid=9yomIWlBUAh83U6ENEt4Kw&oh=00_AfFb9s9k0xdsMtfF4H9cXikQXb4JxZlHTA7yZQZsz12g6g&oe=6810B70E",
-          wallet_address:"GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
-          explorer_link:"https://blockexplorer.minepi.com/mainnet/accounts/GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+        "004": {
+          name: "Phạm Thị D",
+          avatar: "https://via.placeholder.com/100?text=Member4",
+          wallet_address: "xyz789abc123mno456pqr789stu",
+          explorer_link:
+            "https://piscan.io/account/XYZ789ABC123MNO456PQR789STU",
         },
-        // Thêm thông tin cho 100 thành viên hoặc nhiều hơn tại đây (004, 005, ...)
       };
 
       // Lấy tag_id từ URL
       const urlParams = new URLSearchParams(window.location.search);
       const tagId = urlParams.get("tag_id");
       const avatarImg = document.getElementById("avatar");
+      const memberName = document.getElementById("member-name");
       const walletInput = document.getElementById("wallet-address");
+      const walletContent = document.getElementById("wallet-content");
       const explorerLink = document.getElementById("explorer-link");
+
+      // Hàm phát âm thanh Typing-6458
+      function playMatrixSound() {
+        const sound = document.getElementById("matrixSound");
+        sound.volume = 0.8; // Âm lượng 80%
+        sound.play().catch((error) => {
+          console.error("Lỗi phát âm thanh:", error);
+        });
+        // Dừng sau 2 giây để đồng bộ với Matrix Rain
+        setTimeout(() => {
+          sound.pause();
+          sound.currentTime = 0; // Reset về đầu
+        }, 2000);
+      }
 
       // Hiển thị thông tin dựa trên tag_id
       if (tagId && memberData[tagId]) {
@@ -509,8 +975,31 @@
         avatarImg.src = member.avatar;
         walletInput.value = member.wallet_address;
         explorerLink.href = member.explorer_link;
+
+        // Matrix rain + fade-in cho tên
+        memberName.innerHTML = "";
+        const name = member.name;
+        for (let i = 0; i < name.length; i++) {
+          const span = document.createElement("span");
+          span.textContent = name[i] === " " ? "\u00A0" : name[i];
+          memberName.appendChild(span);
+        }
+
+        // Matrix rain + fade-in cho địa chỉ ví
+        walletContent.innerHTML = "";
+        const walletAddress = member.wallet_address;
+        for (let i = 0; i < walletAddress.length; i++) {
+          const span = document.createElement("span");
+          span.textContent = walletAddress[i];
+          walletContent.appendChild(span);
+        }
+
+        // Phát âm thanh khi trang tải
+        playMatrixSound();
       } else {
         avatarImg.src = "https://via.placeholder.com/100?text=Avatar";
+        memberName.innerHTML = "<span>Không tìm thấy thông tin</span>";
+        walletContent.innerHTML = "<span>Không tìm thấy địa chỉ ví</span>";
         walletInput.value = "Không tìm thấy thông tin thành viên";
         explorerLink.href = "#";
         explorerLink.style.pointerEvents = "none";
