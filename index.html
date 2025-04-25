@@ -10,6 +10,9 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Orbitron", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
       }
 
       body {
@@ -53,7 +56,7 @@
         font-size: 2.4rem;
         font-weight: 900;
         color: #00ffcc;
-        text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+        text-shadow: 0 0 3px #00ffcc, 0 0 6px #00ffcc;
         -webkit-text-stroke: 0.5px #003333;
         margin-bottom: 15px;
         animation: glitch 2s linear infinite,
@@ -77,10 +80,10 @@
 
       @keyframes neon {
         from {
-          text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+          text-shadow: 0 0 3px #00ffcc, 0 0 6px #00ffcc, 0 0 9px #00ffcc;
         }
         to {
-          text-shadow: 0 0 8px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc;
+          text-shadow: 0 0 5px #00ffcc, 0 0 9px #00ffcc, 0 0 12px #00ffcc;
         }
       }
 
@@ -221,8 +224,8 @@
 
       /* Member name styles */
       .member-name {
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: 1.6rem;
+        font-weight: 800;
         color: #ffffff;
         margin-top: 10px;
         position: relative;
@@ -289,16 +292,16 @@
 
       @keyframes colorShift {
         0% {
-          color: #00ffcc;
-          text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+          color: #00ffdd;
+          text-shadow: 0 0 3px #00ffdd, 0 0 6px #00ffdd;
         }
         50% {
-          color: #ff00cc;
-          text-shadow: 0 0 5px #ff00cc, 0 0 10px #ff00cc;
+          color: #ff00dd;
+          text-shadow: 0 0 3px #ff00dd, 0 0 6px #ff00dd;
         }
         100% {
-          color: #00ffcc;
-          text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+          color: #00ffdd;
+          text-shadow: 0 0 3px #00ffdd, 0 0 6px #00ffdd;
         }
       }
 
@@ -310,9 +313,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        color: #00ffcc;
-        opacity: 0.5;
-        font-size: 1.5rem;
+        color: #00ffdd;
+        opacity: 0.3;
+        font-size: 1.6rem;
         white-space: nowrap;
         animation: matrixRain 1s linear forwards;
         pointer-events: none;
@@ -321,10 +324,10 @@
       @keyframes matrixRain {
         0% {
           transform: translateY(-100%);
-          opacity: 0.5;
+          opacity: 0.3;
         }
         50% {
-          opacity: 0.7;
+          opacity: 0.5;
         }
         100% {
           transform: translateY(100%);
@@ -337,7 +340,7 @@
         content: "|";
         position: absolute;
         right: -10px;
-        color: #00ffcc;
+        color: #00ffdd;
         animation: cursorBlink 1s step-end infinite;
         animation-delay: 2s;
       }
@@ -349,19 +352,19 @@
       }
 
       .member-name:hover {
-        text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff;
+        text-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff;
         animation: waveLight 1s ease-in-out;
       }
 
       @keyframes waveLight {
         0% {
-          text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+          text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
         }
         50% {
-          text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff, -10px 0 20px #00ffcc;
+          text-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff, -10px 0 15px #00ffdd;
         }
         100% {
-          text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+          text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
         }
       }
 
@@ -376,7 +379,7 @@
         font-size: 1.1rem;
         font-weight: 600;
         margin-bottom: 8px;
-        color: #00ffcc;
+        color: #00ffdd;
       }
 
       .wallet-address textarea {
@@ -384,11 +387,11 @@
         height: 60px;
         padding: 10px;
         border: 2px solid;
-        border-image: linear-gradient(45deg, #00ffcc, #ff00cc) 1;
+        border-image: linear-gradient(45deg, #00ffdd, #ff00dd) 1;
         border-radius: 5px;
         background: rgba(255, 255, 255, 0.15);
         color: #ffffff;
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-family: "Orbitron", sans-serif;
         outline: none;
         resize: none;
@@ -411,11 +414,12 @@
         min-height: 60px;
         padding: 10px;
         border: 2px solid;
-        border-image: linear-gradient(45deg, #00ffcc, #ff00cc) 1;
+        border-image: linear-gradient(45deg, #00ffdd, #ff00dd) 1;
         border-radius: 5px;
         background: rgba(255, 255, 255, 0.15);
         color: #ffffff;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        font-weight: 800;
         font-family: "Orbitron", sans-serif;
         white-space: pre-wrap;
         overflow-wrap: break-word;
@@ -559,9 +563,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        color: #00ffcc;
-        opacity: 0.5;
-        font-size: 1rem;
+        color: #00ffdd;
+        opacity: 0.3;
+        font-size: 1.1rem;
         white-space: pre-wrap;
         overflow-wrap: break-word;
         animation: matrixRainWallet 1.5s linear forwards;
@@ -571,10 +575,10 @@
       @keyframes matrixRainWallet {
         0% {
           transform: translateY(-100%);
-          opacity: 0.5;
+          opacity: 0.3;
         }
         50% {
-          opacity: 0.7;
+          opacity: 0.5;
         }
         100% {
           transform: translateY(100%);
@@ -587,13 +591,13 @@
         content: "|";
         position: absolute;
         right: -10px;
-        color: #00ffcc;
+        color: #00ffdd;
         animation: cursorBlink 1s step-end infinite;
         animation-delay: 3s;
       }
 
       .wallet-address:hover .wallet-content {
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         animation: waveLight 1s ease-in-out;
       }
 
@@ -602,7 +606,7 @@
           box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
         50% {
-          box-shadow: 0 0 25px rgba(255, 0, 204, 0.5);
+          box-shadow: 0 0 20px rgba(255, 0, 204, 0.5);
         }
         100% {
           box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
@@ -631,14 +635,14 @@
       }
 
       .btn-copy {
-        background: linear-gradient(45deg, #ff00cc, #00ffcc);
+        background: linear-gradient(45deg, #ff00dd, #00ffdd);
         background-size: 200% 200%;
         animation: buttonGradient 4s ease infinite;
         box-shadow: 0 0 10px rgba(255, 0, 204, 0.5);
       }
 
       .btn-check {
-        background: linear-gradient(45deg, #00ccff, #ff00cc);
+        background: linear-gradient(45deg, #00ccff, #ff00dd);
         background-size: 200% 200%;
         animation: buttonGradient 4s ease infinite;
         box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
@@ -692,7 +696,7 @@
       .instructions h2 {
         font-size: 1.3rem;
         font-weight: 600;
-        background: linear-gradient(45deg, #00ffcc, #ff00cc);
+        background: linear-gradient(45deg, #00ffdd, #ff00dd);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 15px;
@@ -734,14 +738,14 @@
       }
 
       .contact a {
-        color: #00ffcc;
+        color: #00ffdd;
         text-decoration: none;
         font-weight: 600;
       }
 
       .contact a:hover {
         text-decoration: underline;
-        text-shadow: 0 0 5px #00ffcc;
+        text-shadow: 0 0 5px #00ffdd;
       }
 
       /* Responsive */
@@ -799,7 +803,7 @@
         }
 
         .member-name {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
 
         .wallet-address label {
@@ -807,12 +811,12 @@
         }
 
         .wallet-address .wallet-content {
-          font-size: 0.9rem;
+          font-size: 1rem;
           min-height: 80px;
         }
 
         .wallet-address .wallet-content::before {
-          font-size: 0.9rem;
+          font-size: 1rem;
         }
 
         .instructions h2 {
@@ -829,7 +833,7 @@
       }
     </style>
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&display=swap"
       rel="stylesheet"
     />
   </head>
