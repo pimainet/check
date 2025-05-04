@@ -18,6 +18,7 @@
       /* Smooth Scroll */
       html {
         scroll-behavior: smooth;
+        overscroll-behavior: contain;
       }
 
       /* Parallax Background */
@@ -25,7 +26,8 @@
         background: linear-gradient(135deg, #e0e7ff, #c3dafe, #a5b4fc);
         position: relative;
         overflow-x: hidden;
-        animation: gradientShift 15s ease infinite;
+        animation: gradientShift 10s ease infinite;
+        will-change: background-position;
       }
 
       @keyframes gradientShift {
@@ -99,6 +101,7 @@
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform, box-shadow;
       }
       .card:hover {
         transform: translateY(-5px);
@@ -110,6 +113,7 @@
         position: relative;
         overflow: hidden;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        will-change: transform;
       }
       .btn:hover {
         transform: scale(1.05);
@@ -194,6 +198,30 @@
         box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
         border-color: #6366f1;
       }
+
+      /* Avatar Styles */
+      .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 8px; /* Hình vuông với góc bo nhẹ */
+        border: 2px solid transparent;
+        object-fit: cover;
+        transition: all 0.3s ease;
+        opacity: 0; /* Hiệu ứng fade-in khi tải */
+        will-change: transform, box-shadow, border;
+      }
+      .avatar.loaded {
+        opacity: 1;
+      }
+      .avatar:hover {
+        transform: scale(1.1) rotate(3deg); /* Phóng to và xoay nhẹ */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border: 2px solid transparent;
+        background: linear-gradient(45deg, #6366f1, #a5b4fc) border-box;
+      }
+      .dark-mode .avatar:hover {
+        background: linear-gradient(45deg, #60a5fa, #a0aec0) border-box;
+      }
     </style>
   </head>
   <body
@@ -219,15 +247,14 @@
       </div>
 
       <!-- Card Section -->
-      <div
-        class="card shadow-xl rounded-2xl p-6 mb-6"
-      >
+      <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <div class="flex items-center mb-4">
           <img
             id="avatar"
-            src="https://via.placeholder.com/80"
+            src="https://picsum.photos/80"
             alt="Avatar"
-            class="w-16 h-16 rounded-full mr-4 border-2 border-indigo-200 transition-transform duration-300 hover:scale-110"
+            class="avatar mr-4"
+            loading="lazy"
           />
           <div class="flex-1">
             <h2 id="userName" class="text-xl font-bold">Tên của bạn</h2>
@@ -261,17 +288,13 @@
       </div>
 
       <!-- Chart Section (TradingView Widget) -->
-      <div
-        class="card shadow-xl rounded-2xl p-6 mb-6"
-      >
+      <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <h3 class="text-lg font-bold mb-4">Giá Pi (USD)</h3>
         <div id="tradingview_chart"></div>
       </div>
 
       <!-- Safety Check Section -->
-      <div
-        class="card shadow-xl rounded-2xl p-6 mb-6"
-      >
+      <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <h3 class="text-lg font-bold mb-4">Kiểm tra Web/Ứng dụng</h3>
         <select
           id="checkType"
@@ -328,9 +351,7 @@
       </div>
 
       <!-- Support Section -->
-      <div
-        class="card shadow-xl rounded-2xl p-6"
-      >
+      <div class="card shadow-xl rounded-2xl p-6">
         <h3 class="text-lg font-bold mb-4">Hỗ trợ</h3>
         <p class="text-sm text-gray-600 mb-2">
           Liên hệ:
@@ -355,6 +376,7 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
+            loading="lazy"
           ></iframe>
         </div>
       </div>
@@ -364,9 +386,7 @@
         id="withdrawModal"
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal"
       >
-        <div
-          class="modal-content rounded-lg p-6 w-11/12 max-w-sm"
-        >
+        <div class="modal-content rounded-lg p-6 w-11/12 max-w-sm">
           <h3 class="text-lg font-bold mb-4">Rút Pi</h3>
           <p class="text-sm text-gray-600 mb-4">
             Số dư hiện tại: <span id="withdrawBalance">0 Pi</span>
@@ -417,8 +437,7 @@
         },
         "002": {
           name: "LÊ VĂN HOẰNG",
-          avatar:
-            "https://i.imgur.com/bacHB3U.jpeg",
+          avatar: "https://i.imgur.com/bacHB3U.jpeg",
           wallet_address:
             "GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP",
           explorer_link:
@@ -426,8 +445,7 @@
         },
         "003": {
           name: "PHẠM THỊ XUÂN",
-          avatar:
-            "https://i.imgur.com/FgV7fRT.jpeg",
+          avatar: "https://i.imgur.com/FgV7fRT.jpeg",
           wallet_address:
             "GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4",
           explorer_link:
@@ -435,8 +453,7 @@
         },
         "004": {
           name: "LÊ THỊ HƯƠNG",
-          avatar:
-            "https://i.imgur.com/qPmerTD.jpeg",
+          avatar: "https://i.imgur.com/qPmerTD.jpeg",
           wallet_address:
             "GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
           explorer_link:
@@ -444,8 +461,7 @@
         },
         "005": {
           name: "LÊ TRỌNG KHOA",
-          avatar:
-            "https://i.imgur.com/h2G4JTA.jpeg",
+          avatar: "https://i.imgur.com/h2G4JTA.jpeg",
           wallet_address:
             "GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ",
           explorer_link:
@@ -453,8 +469,7 @@
         },
         "006": {
           name: "HOÀNG VĂN TRỤ",
-          avatar:
-            "https://i.imgur.com/wNUTVEz.jpeg",
+          avatar: "https://i.imgur.com/wNUTVEz.jpeg",
           wallet_address:
             "GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN",
           explorer_link:
@@ -462,8 +477,7 @@
         },
         "007": {
           name: "MINH TRANG",
-          avatar:
-            "https://i.imgur.com/HskgNhC.jpeg",
+          avatar: "https://i.imgur.com/HskgNhC.jpeg",
           wallet_address:
             "GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6",
           explorer_link:
@@ -471,8 +485,7 @@
         },
         "008": {
           name: "LÊ THỊ HÀ",
-          avatar:
-            "https://i.imgur.com/zAX7aF4.jpeg",
+          avatar: "https://i.imgur.com/zAX7aF4.jpeg",
           wallet_address:
             "GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS",
           explorer_link:
@@ -511,8 +524,25 @@
         } else {
           userName.textContent = "Không tìm thấy thông tin";
           walletAddress.textContent = "Không tìm thấy địa chỉ ví";
-          avatar.src = "https://via.placeholder.com/80";
+          avatar.src = "https://picsum.photos/80"; // URL dự phòng chính
+          showToast("Tag ID không hợp lệ!", "error");
         }
+
+        // Xử lý khi hình ảnh tải thành công hoặc thất bại
+        avatar.onload = () => {
+          avatar.classList.add("loaded");
+        };
+        avatar.onerror = () => {
+          console.warn(`Không thể tải hình ảnh: ${avatar.src}`);
+          // Thử URL dự phòng thứ hai
+          if (avatar.src !== "https://picsum.photos/seed/fallback/80") {
+            avatar.src = "https://picsum.photos/seed/fallback/80";
+          } else {
+            // Nếu cả URL dự phòng thứ hai cũng thất bại, hiển thị thông báo
+            showToast("Không thể tải hình ảnh đại diện!", "error");
+            avatar.classList.add("loaded"); // Đảm bảo hiển thị dù lỗi
+          }
+        };
       }
 
       // Auto-check balance from URL
@@ -527,8 +557,7 @@
 
       // Check Balance (Redirect to Pi Block Explorer)
       function checkBalance() {
-        const walletAddress =
-          document.getElementById("walletAddress").textContent;
+        const walletAddress = document.getElementById("walletAddress").textContent;
 
         if (!walletAddress || walletAddress === "Không tìm thấy địa chỉ ví") {
           showToast("Không có địa chỉ ví để kiểm tra!", "error");
@@ -551,27 +580,36 @@
             "Chuyển chế độ sáng";
         }
 
-        // Initialize TradingView Widget
-        new TradingView.widget({
-          width: "100%",
-          height: 300,
-          symbol: "OKX:PIUSDT",
-          interval: "D",
-          timezone: "Etc/UTC",
-          theme: "light",
-          style: "1",
-          locale: "en",
-          toolbar_bg: "#f1f3f6",
-          enable_publishing: false,
-          allow_symbol_change: true,
-          container_id: "tradingview_chart",
-        });
+        // Lazy load TradingView Widget
+        const tradingViewSection = document.getElementById("tradingview_chart");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting) {
+              new TradingView.widget({
+                width: "100%",
+                height: 250,
+                symbol: "OKX:PIUSDT",
+                interval: "D",
+                timezone: "Etc/UTC",
+                theme: "light",
+                style: "1",
+                locale: "en",
+                toolbar_bg: "#f1f3f6",
+                enable_publishing: false,
+                allow_symbol_change: true,
+                container_id: "tradingview_chart",
+              });
+              observer.disconnect();
+            }
+          },
+          { rootMargin: "100px" }
+        );
+        observer.observe(tradingViewSection);
       });
 
       // Copy Wallet Address
       function copyWalletAddress() {
-        const walletAddress =
-          document.getElementById("walletAddress").textContent;
+        const walletAddress = document.getElementById("walletAddress").textContent;
         if (walletAddress === "Không tìm thấy địa chỉ ví") {
           showToast("Không có địa chỉ ví để sao chép!", "error");
           return;
@@ -602,9 +640,7 @@
 
       // Withdraw Pi (Mock)
       function withdrawPi() {
-        const amount = parseFloat(
-          document.getElementById("withdrawAmount").value
-        );
+        const amount = parseFloat(document.getElementById("withdrawAmount").value);
         const password = document.getElementById("withdrawPassword").value;
         const withdrawStatus = document.getElementById("withdrawStatus");
 
@@ -671,16 +707,14 @@
       }
 
       // Dark Mode Toggle
-      document
-        .getElementById("darkModeToggle")
-        .addEventListener("click", () => {
-          document.body.classList.toggle("dark-mode");
-          const isDarkMode = document.body.classList.contains("dark-mode");
-          document.getElementById("darkModeToggle").textContent = isDarkMode
-            ? "Chuyển chế độ sáng"
-            : "Chuyển chế độ tối";
-          localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
-        });
+      document.getElementById("darkModeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        const isDarkMode = document.body.classList.contains("dark-mode");
+        document.getElementById("darkModeToggle").textContent = isDarkMode
+          ? "Chuyển chế độ sáng"
+          : "Chuyển chế độ tối";
+        localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+      });
     </script>
   </body>
 </html>
