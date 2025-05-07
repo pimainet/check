@@ -583,7 +583,7 @@ function checkIn() {
 
   // Tạo phần thưởng ngẫu nhiên
   const pidogeReward = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
-  const ttReward = 1;
+  const ttReward = 0.7;
 
   // Cập nhật số dư
   let pidogeBalance = parseFloat(localStorage.getItem("pidogeBalance") || "0") + pidogeReward;
