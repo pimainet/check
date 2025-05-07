@@ -570,7 +570,10 @@ const planets = [
 ];
 
 // Logic điểm danh
-function checkIn() {
+function checkIn() {const planetImage = document.getElementById("planetImage");
+planetImage.onerror = () => {
+  planetImage.src = "https://i.imgur.com/ccV8NTe.jpeg"; // Hình dự phòng
+};
   const checkInButton = document.getElementById("checkInButton");
   const lastCheckIn = localStorage.getItem("lastCheckIn");
   const now = new Date().getTime();
