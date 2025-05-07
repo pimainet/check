@@ -653,10 +653,10 @@ function updateCheckInHistory() {
 
 // Khởi tạo giao diện khi tải trang
 function initCheckIn() {
-const planetImage = document.getElementById("planetImage");
-planetImage.onerror = () => {
+  const planetImage = document.getElementById("planetImage");
+  planetImage.onerror = () => {
   planetImage.src = "https://i.imgur.com/ccV8NTe.jpeg"; // Hình dự phòng
-};
+  };
   const pidogeBalance = localStorage.getItem("pidogeBalance") || "0";
   const ttBalance = localStorage.getItem("ttBalance") || "0";
   const checkInCount = parseInt(localStorage.getItem("checkInCount") || "0");
@@ -776,7 +776,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Lazy load TradingView Widget
-        const tradingViewSection = document.getElementById("tradingview_chart");
+       /* const tradingViewSection = document.getElementById("tradingview_chart");
         const observer = new IntersectionObserver(
           (entries) => {
             if (entries[0].isIntersecting) {
@@ -800,7 +800,7 @@ document.addEventListener("DOMContentLoaded", () => {
           { rootMargin: "100px" }
         );
         observer.observe(tradingViewSection);
-      });
+      }); */
 
       // Copy Wallet Address
       function copyWalletAddress() {
