@@ -219,22 +219,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 40px;
+        height: 40px;
         padding: 0.5rem;
         background: rgba(255, 255, 255, 0.1);
         border: 2px solid rgba(0, 209, 255, 0.4);
         border-radius: 8px;
         animation: soundGlow 1.5s ease-in-out infinite;
-        transition: transform 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        z-index: 10;
       }
       #soundToggle:hover {
         transform: scale(1.1);
         box-shadow: 0 0 15px rgba(179, 0, 255, 0.6);
       }
       #soundToggle svg {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         fill: #00D1FF;
-        text-shadow: 0 0 5px rgba(0, 209, 255, 0.5);
       }
       @keyframes soundGlow {
         0% { box-shadow: 0 0 10px rgba(0, 209, 255, 0.4); }
@@ -313,7 +316,7 @@
         box-shadow: 0 0 20px rgba(179, 0, 255, 1);
       }
       @keyframes shake {
-        0% { WHY transform: translate(0, 0); }
+        0% { transform: translate(0, 0); }
         25% { transform: translate(-2px, 2px); }
         50% { transform: translate(2px, -2px); }
         75% { transform: translate(-2px, 2px); }
@@ -519,9 +522,9 @@
         <p class="text-sm mb-4">
           Số dư: <span id="pidogeBalance">0</span> PiDoge, <span id="ttBalance">0</span> TT
         </p>
-        <div class="flex justify-between mb-4">
+        <div class="flex justify-between items-center mb-4">
           <p class="text-sm timer" id="gameTimer">Thời gian: 10s</p>
-          <button id="soundToggle" class="btn">
+          <button id="soundToggle" class="btn" aria-label="Bật/tắt âm thanh">
             <svg id="soundIcon" viewBox="0 0 24 24">
               <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>
             </svg>
@@ -956,13 +959,20 @@
       }
 
       // Sound Toggle
-      document.getElementById("soundToggle").addEventListener("click", () => {
-        soundEnabled = !soundEnabled;
-        const soundIcon = document.getElementById("soundIcon");
-        soundIcon.innerHTML = soundEnabled
-          ? '<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>'
-          : '<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm7.5 3c0-1.67-1.33-3-3-3v6c1.67 0 3-1.33 3-3zm3.5-8.77v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77zM15 12l5-5m0 5l-5-5"/>';
-      });
+      function initializeSoundToggle() {
+        const soundToggle = document.getElementById("soundToggle");
+        if (!soundToggle) {
+          console.error("Không tìm thấy nút #soundToggle!");
+          return;
+        }
+        soundToggle.addEventListener("click", () => {
+          soundEnabled = !soundEnabled;
+          const soundIcon = document.getElementById("soundIcon");
+          soundIcon.innerHTML = soundEnabled
+            ? '<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>'
+            : '<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm7.5 3c0-1.67-1.33-3-3-3v6c1.67 0 3-1.33 3-3zm3.5-8.77v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77zM15 12l5-5m0 5l-5-5"/>';
+        });
+      }
 
       // Update Check-in History
       function updateCheckInHistory() {
@@ -1183,6 +1193,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         loadUserData();
         initCheckIn();
+        initializeSoundToggle();
         autoCheckBalanceFromURL();
 
         // Lazy load TradingView Widget
