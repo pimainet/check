@@ -1,0 +1,56 @@
+{
+  "001": {
+    "name": "HOÀNG VĂN MINH",
+    "avatar": "https://i.imgur.com/6ceGYoC.jpeg",
+    "wallet_address": "GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ"
+  },
+  "002": {
+    "name": "LÊ VĂN HOẰNG",
+    "avatar": "https://i.imgur.com/bacHB3U.jpeg",
+    "wallet_address": "GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP"
+  },
+  "003": {
+    "name": "PHẠM THỊ XUÂN",
+    "avatar": "https://i.imgur.com/FgV7fRT.jpeg",
+    "wallet_address": "GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4"
+  },
+  "004": {
+    "name": "LÊ THỊ HƯƠNG",
+    "avatar": "https://i.imgur.com/qPmerTD.jpeg",
+    "wallet_address": "GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3"
+  },
+  "005": {
+    "name": "LÊ TRỌNG KHOA",
+    "avatar": "https://i.imgur.com/h2G4JTA.jpeg",
+    "wallet_address": "GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ"
+  },
+  "006": {
+    "name": "HOÀNG VĂN TRỤ",
+    "avatar": "https://i.imgur.com/wNUTVEz.jpeg",
+    "wallet_address": "GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN"
+  },
+  "007": {
+    "name": "MINH TRANG",
+    "avatar": "https://i.imgur.com/HskgNhC.jpeg",
+    "wallet_address": "GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6"
+  },
+  "008": {
+    "name": "LÊ THỊ HÀ",
+    "avatar": "https://i.imgur.com/zAX7aF4.jpeg",
+    "wallet_address": "GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS"
+  },
+  "009": {
+    "name": "LÊ THỊ HỒNG",
+    "avatar": "https://i.imgur.com/E44n0YR.jpeg",
+    "wallet_address": "GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
+    "explorer_link": "https://blockexplorer.minepi.com/mainnet/accounts/GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC"
+  }
+}
