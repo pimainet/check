@@ -13,9 +13,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- TradingView Widget -->
     <script src="https://s3.tradingview.com/tv.js"></script>
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <!-- Firebase SDK (Version 8 for compatibility) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <!-- Local CSS -->
     <style>
       /* Smooth Scroll */
@@ -556,19 +556,24 @@
     <!-- Inline JavaScript -->
     <script>
       // Firebase Configuration
-     const firebaseConfig = {
-  apiKey: "AIzaSyDnRKWDFfY3pMX7OwMz8QDxEKZ1g2-lWSc",
-  authDomain: "pi-universe-hub-41ca7.firebaseapp.com",
-  projectId: "pi-universe-hub-41ca7",
-  storageBucket: "pi-universe-hub-41ca7.firebasestorage.app",
-  messagingSenderId: "478656359387",
-  appId: "1:478656359387:web:e0eab8b10e9a0fdd8a95fe",
-  measurementId: "G-YC10G46QSC"
-};
+      const firebaseConfig = {
+        apiKey: "AIzaSyDnRKWDFfY3pMX7OwMz8QDxEKZ1g2-lWSc",
+        authDomain: "pi-universe-hub-41ca7.firebaseapp.com",
+        projectId: "pi-universe-hub-41ca7",
+        storageBucket: "pi-universe-hub-41ca7.firebasestorage.app",
+        messagingSenderId: "478656359387",
+        appId: "1:478656359387:web:e0eab8b10e9a0fdd8a95fe",
+        measurementId: "G-YC10G46QSC"
+    };
 
       // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      const database = firebase.database();
+      try {
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+      } catch (error) {
+        console.error("Firebase initialization failed:", error);
+        showToast("Không thể kết nối Firebase!", "error");
+      }
 
       // Danh sách dữ liệu thành viên
       const memberData = {
@@ -707,6 +712,11 @@
           return;
         }
 
+        if (!database) {
+          showToast("Không thể kết nối Firebase!", "error");
+          return;
+        }
+
         const userRef = database.ref(`users/${tagId}`);
         userRef.once("value", (snapshot) => {
           const data = snapshot.val() || {};
@@ -754,27 +764,29 @@
             lastCheckIn: now,
             checkInHistory,
             level: userLevel
-          }).catch((error) => {
-            showToast("Lỗi khi lưu dữ liệu!", "error");
+          }, (error) => {
+            if (error) {
+              showToast("Lỗi khi lưu dữ liệu!", "error");
+            } else {
+              // Cập nhật giao diện
+              document.getElementById("pidogeBalance").textContent = pidogeBalance;
+              document.getElementById("ttBalance").textContent = ttBalance;
+              document.getElementById("userLevel").textContent = userLevel;
+              document.getElementById("checkInProgress").textContent = `${checkInCount}/${levelMilestones[userLevel + 1] || 300} ngày để lên cấp ${userLevel + 1}`;
+
+              // Cập nhật hành tinh
+              const currentPlanet = planets[userLevel];
+              document.getElementById("planetName").textContent = currentPlanet.name;
+              document.getElementById("planetDescription").textContent = currentPlanet.description;
+              document.getElementById("planetImage").src = currentPlanet.image;
+
+              // Cập nhật lịch sử điểm danh
+              updateCheckInHistory(checkInHistory);
+
+              showToast(`Điểm danh thành công! Nhận ${pidogeReward} PiDoge và ${ttReward} TT`);
+            }
           });
-
-          // Cập nhật giao diện
-          document.getElementById("pidogeBalance").textContent = pidogeBalance;
-          document.getElementById("ttBalance").textContent = ttBalance;
-          document.getElementById("userLevel").textContent = userLevel;
-          document.getElementById("checkInProgress").textContent = `${checkInCount}/${levelMilestones[userLevel + 1] || 300} ngày để lên cấp ${userLevel + 1}`;
-
-          // Cập nhật hành tinh
-          const currentPlanet = planets[userLevel];
-          document.getElementById("planetName").textContent = currentPlanet.name;
-          document.getElementById("planetDescription").textContent = currentPlanet.description;
-          document.getElementById("planetImage").src = currentPlanet.image;
-
-          // Cập nhật lịch sử điểm danh
-          updateCheckInHistory(checkInHistory);
-
-          showToast(`Điểm danh thành công! Nhận ${pidogeReward} PiDoge và ${ttReward} TT`);
-        }).catch((error) => {
+        }, (error) => {
           showToast("Lỗi khi tải dữ liệu!", "error");
         });
       }
@@ -812,6 +824,11 @@
           return;
         }
 
+        if (!database) {
+          showToast("Không thể kết nối Firebase!", "error");
+          return;
+        }
+
         const userRef = database.ref(`users/${tagId}`);
         userRef.once("value", (snapshot) => {
           const data = snapshot.val() || {};
@@ -839,7 +856,7 @@
           document.getElementById("planetImage").src = currentPlanet.image;
 
           updateCheckInHistory(data.checkInHistory);
-        }).catch((error) => {
+        }, (error) => {
           showToast("Lỗi khi tải dữ liệu!", "error");
         });
       }
@@ -884,7 +901,9 @@
         };
         avatar.onerror = () => {
           if (avatar.src !== "https://picsum.photos/seed/fallback/80") {
-            avatar.src = "https://picsum.photos/seed/fallback/80";
+            avatar.src = "https://picsum.photos/seed
+
+/fallback/80";
           } else {
             showToast("Không thể tải hình ảnh đại diện!", "error");
             avatar.classList.add("loaded");
