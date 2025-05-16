@@ -330,16 +330,11 @@
       }
     </style>
   </head>
-  <body
-    class="min-h-screen font-sans text-gray-800 transition-colors duration-500"
-  >
+  <body class="min-h-screen font-sans text-gray-800 transition-colors duration-500">
     <div class="container mx-auto p-4 max-w-md">
       <!-- Dark Mode Toggle -->
       <div class="flex justify-end mb-4">
-        <button
-          id="darkModeToggle"
-          class="bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors btn"
-        >
+        <button id="darkModeToggle" class="bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors btn">
           Chuyển chế độ tối
         </button>
       </div>
@@ -351,53 +346,36 @@
       </div>
 
       <!-- Toast Notification -->
-      <div
-        id="toast"
-        class="fixed top-4 right-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg"
-      >
+      <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg">
         <span id="toastMessage"></span>
       </div>
 
       <!-- Card Section -->
       <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <div class="flex items-center mb-4">
-          <img
-            id="avatar"
-            src="https://picsum.photos/80"
-            alt="Avatar"
-            class="avatar mr-4"
-            loading="lazy"
-          />
+          <img id="avatar" src="https://picsum.photos/80" alt="Avatar" class="avatar mr-4" loading="lazy" />
           <div class="flex-1">
             <h2 id="userName" class="text-xl font-bold">Tên của bạn</h2>
           </div>
         </div>
         <div class="mb-4">
           <p class="text-sm text-gray-500">
-            Ví:
-            <span id="walletAddress" class="break-words text-sm text-gray-500"
-              >Chưa nhập địa chỉ ví</span
-            >
+            Ví: <span id="walletAddress" class="break-words text-sm text-gray-500">Chưa nhập địa chỉ ví</span>
           </p>
           <p class="text-sm text-gray-500 mt-1">
             Số dư: <span id="balanceDisplay">Chưa kiểm tra</span>
           </p>
         </div>
         <div class="flex space-x-2">
-          <button
-            onclick="copyWalletAddress()"
-            class="flex-1 bg-indigo-500 text-white py-2 rounded-lg btn hover:bg-indigo-600"
-          >
+          <button onclick="copyWalletAddress()" class="flex-1 bg-indigo-500 text-white py-2 rounded-lg btn hover:bg-indigo-600">
             Sao chép ví
           </button>
-          <button
-            onclick="checkBalance()"
-            class="flex-1 bg-green-500 text-white py-2 rounded-lg btn hover:bg-green-600"
-          >
+          <button onclick="checkBalance()" class="flex-1 bg-green-500 text-white py-2 rounded-lg btn hover:bg-green-600">
             Kiểm tra số dư
           </button>
         </div>
       </div>
+
       <!-- Check-in Section -->
       <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <h3 class="text-lg font-bold mb-4">Khám phá Vũ trụ Pi</h3>
@@ -417,19 +395,17 @@
         <h4 class="text-md font-bold mt-4 mb-2">Lịch sử điểm danh</h4>
         <div id="checkInHistory" class="text-sm text-gray-500"></div>
       </div>
+
       <!-- Chart Section (TradingView Widget) -->
       <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <h3 class="text-lg font-bold mb-4">Giá Pi (USD)</h3>
         <div id="tradingview_chart"></div>
-      </div> 
+      </div>
 
       <!-- Safety Check Section -->
       <div class="card shadow-xl rounded-2xl p-6 mb-6">
         <h3 class="text-lg font-bold mb-4">Kiểm tra Web/Ứng dụng</h3>
-        <select
-          id="checkType"
-          class="w-full p-2 border rounded mb-4 focus:ring-2 focus:ring-indigo-300 transition-all duration-200"
-        >
+        <select id="checkType" class="w-full p-2 border rounded mb-4 focus:ring-2 focus:ring-indigo-300 transition-all duration-200">
           <option value="website">Trang web</option>
           <option value="app">Ứng dụng</option>
         </select>
@@ -458,24 +434,11 @@
         <div id="safetyResult" class="mt-4 hidden">
           <p class="text-sm font-bold flex items-center">
             Kết quả: <span id="safetyStatus" class="ml-2"></span>
-            <svg
-              id="statusIcon"
-              class="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              />
+            <svg id="statusIcon" class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
           </p>
-          <p class="text-sm">
-            Điểm tin cậy: <span id="safetyScore"></span>/100
-          </p>
+          <p class="text-sm">Điểm tin cậy: <span id="safetyScore"></span>/100</p>
           <p class="text-sm">Cảnh báo: <span id="safetyWarnings"></span></p>
         </div>
       </div>
@@ -484,18 +447,10 @@
       <div class="card shadow-xl rounded-2xl p-6">
         <h3 class="text-lg font-bold mb-4">Hỗ trợ</h3>
         <p class="text-sm text-gray-600 mb-2">
-          Liên hệ:
-          <a
-            href="mailto:support@example.com"
-            class="text-indigo-500 hover:underline"
-            >support@example.com</a
-          >
+          Liên hệ: <a href="mailto:support@example.com" class="text-indigo-500 hover:underline">support@example.com</a>
         </p>
         <p class="text-sm text-gray-600 mb-4">
-          Hotline:
-          <a href="tel:+84987654321" class="text-indigo-500 hover:underline"
-            >+84 987 654 321</a
-          >
+          Hotline: <a href="tel:+84987654321" class="text-indigo-500 hover:underline">+84 987 654 321</a>
         </p>
         <h4 class="text-md font-bold mb-2">Video hướng dẫn</h4>
         <div class="relative" style="padding-top: 56.25%">
@@ -512,10 +467,7 @@
       </div>
 
       <!-- Withdraw Modal -->
-      <div
-        id="withdrawModal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal"
-      >
+      <div id="withdrawModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
         <div class="modal-content rounded-lg p-6 w-11/12 max-w-sm">
           <h3 class="text-lg font-bold mb-4">Rút Pi</h3>
           <p class="text-sm text-gray-600 mb-4">
@@ -559,17 +511,20 @@
       const firebaseConfig = {
         apiKey: "AIzaSyDnRKWDFfY3pMX7OwMz8QDxEKZ1g2-lWSc",
         authDomain: "pi-universe-hub-41ca7.firebaseapp.com",
+        databaseURL: "https://pi-universe-hub-41ca7.firebaseio.com",
         projectId: "pi-universe-hub-41ca7",
         storageBucket: "pi-universe-hub-41ca7.firebasestorage.app",
         messagingSenderId: "478656359387",
         appId: "1:478656359387:web:e0eab8b10e9a0fdd8a95fe",
         measurementId: "G-YC10G46QSC"
-    };
+      };
 
       // Initialize Firebase
+      let database;
       try {
         firebase.initializeApp(firebaseConfig);
-        var database = firebase.database();
+        database = firebase.database();
+        console.log("Firebase initialized successfully");
       } catch (error) {
         console.error("Firebase initialization failed:", error);
         showToast("Không thể kết nối Firebase!", "error");
@@ -578,75 +533,59 @@
       // Danh sách dữ liệu thành viên
       const memberData = {
         "001": {
-          name: "HOÀNG VĂN MINH ",
+          name: "HOÀNG VĂN MINH",
           avatar: "https://i.imgur.com/6ceGYoC.jpeg",
-          wallet_address:
-            "GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
+          wallet_address: "GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GAB3DTZTDHAQQ2IXO4RDPMYQY3CNZABM6ZGK4HWK55QKRQ6W6QCKRSDQ"
         },
         "002": {
           name: "LÊ VĂN HOẰNG",
           avatar: "https://i.imgur.com/bacHB3U.jpeg",
-          wallet_address:
-            "GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP",
+          wallet_address: "GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GCVBQP2M5AWPLHFLUWX7ZRSE24INWWYEYC2EI3NPQWXIL5WVXXZITGJP"
         },
         "003": {
           name: "PHẠM THỊ XUÂN",
           avatar: "https://i.imgur.com/FgV7fRT.jpeg",
-          wallet_address:
-            "GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4",
+          wallet_address: "GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GBDUXC2JUGEVI7N2NGLXB6B3VMUUVNUK6QI4TL5XIB2LIY3U7CDGK3B4"
         },
         "004": {
           name: "LÊ THỊ HƯƠNG",
           avatar: "https://i.imgur.com/qPmerTD.jpeg",
-          wallet_address:
-            "GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+          wallet_address: "GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GCWRIG2I5BNCTN5HXSMAYPQC45MRY7BQFX6AUUPAKTGACFZLBDGJG7I3"
         },
         "005": {
           name: "LÊ TRỌNG KHOA",
           avatar: "https://i.imgur.com/h2G4JTA.jpeg",
-          wallet_address:
-            "GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ",
+          wallet_address: "GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GDMBS366RAH5STHNFCH3QWLV4VNK2U77TGFU7WEG66ZFGMHGOWZCHDOZ"
         },
         "006": {
           name: "HOÀNG VĂN TRỤ",
           avatar: "https://i.imgur.com/wNUTVEz.jpeg",
-          wallet_address:
-            "GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN",
+          wallet_address: "GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GC4QQVU6A4EWTNCW4235WUOQ5FHKBOF57RKO2EPTIXDJKRYTLXZOHSGN"
         },
         "007": {
           name: "MINH TRANG",
           avatar: "https://i.imgur.com/HskgNhC.jpeg",
-          wallet_address:
-            "GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6",
+          wallet_address: "GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GD7M2UZCORSH4AJUJJN2V56MAA33OCIMYMRJ6OXMBQPG5T2FJ4OZ6TA6"
         },
         "008": {
           name: "LÊ THỊ HÀ",
           avatar: "https://i.imgur.com/zAX7aF4.jpeg",
-          wallet_address:
-            "GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS",
-          explorer_link:
-            "https://blockexplorer.minepi.com/mainnet/accounts/GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS",
+          wallet_address: "GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GAL4V2DVKA437NPZT2B6NEQA7AJ4BE53OCKQUXNJ44G3Z3IJF3BGZ7SS"
         },
-         "009":{
-           name: "LÊ THỊ HỒNG",
-           avatar:"https://i.imgur.com/E44n0YR.jpeg",
-           wallet_address:"GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
-           explorer_link:"https://blockexplorer.minepi.com/mainnet/accounts/GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
-        },
+        "009": {
+          name: "LÊ THỊ HỒNG",
+          avatar: "https://i.imgur.com/E44n0YR.jpeg",
+          wallet_address: "GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC",
+          explorer_link: "https://blockexplorer.minepi.com/mainnet/accounts/GDSTSA7GBFL4BXWQMUAJ264LSG3XGBYIPGOW62H4TOTX3F3LCMDSKEHC"
+        }
       };
 
       // Dữ liệu hành tinh
@@ -703,6 +642,7 @@
 
       // Logic điểm danh
       function checkIn() {
+        console.log("checkIn called");
         const urlParams = new URLSearchParams(window.location.search);
         const tagId = urlParams.get("tag_id");
         const checkInButton = document.getElementById("checkInButton");
@@ -718,91 +658,103 @@
         }
 
         const userRef = database.ref(`users/${tagId}`);
-        userRef.once("value", (snapshot) => {
-          const data = snapshot.val() || {};
-          const lastCheckIn = data.lastCheckIn || 0;
-          const now = new Date().getTime();
-          const oneDay = 24 * 60 * 60 * 1000;
+        userRef.once(
+          "value",
+          (snapshot) => {
+            const data = snapshot.val() || {};
+            const lastCheckIn = data.lastCheckIn || 0;
+            const now = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000;
 
-          if (now - lastCheckIn < oneDay) {
-            showToast("Bạn chỉ có thể điểm danh mỗi 24 giờ!", "error");
-            return;
-          }
-
-          // Tạo phần thưởng
-          const pidogeReward = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
-          const ttReward = 0.7;
-
-          // Cập nhật số dư
-          const pidogeBalance = (data.pidogeBalance || 0) + pidogeReward;
-          const ttBalance = (data.ttBalance || 0) + ttReward;
-
-          // Cập nhật lịch sử điểm danh
-          const checkInHistory = data.checkInHistory || [];
-          const checkInDate = new Date().toLocaleString("vi-VN");
-          checkInHistory.push({ date: checkInDate, pidoge: pidogeReward, tt: ttReward });
-
-          // Cập nhật số ngày điểm danh
-          const checkInCount = (data.checkInCount || 0) + 1;
-
-          // Tính cấp độ
-          const levelMilestones = [0, 15, 35, 60, 100, 160, 220, 300];
-          let userLevel = 0;
-          for (let i = 0; i < levelMilestones.length; i++) {
-            if (checkInCount >= levelMilestones[i]) {
-              userLevel = i;
-            } else {
-              break;
+            if (now - lastCheckIn < oneDay) {
+              showToast("Bạn chỉ có thể điểm danh mỗi 24 giờ!", "error");
+              return;
             }
-          }
 
-          // Lưu dữ liệu lên Firebase
-          userRef.set({
-            pidogeBalance,
-            ttBalance,
-            checkInCount,
-            lastCheckIn: now,
-            checkInHistory,
-            level: userLevel
-          }, (error) => {
-            if (error) {
-              showToast("Lỗi khi lưu dữ liệu!", "error");
-            } else {
-              // Cập nhật giao diện
-              document.getElementById("pidogeBalance").textContent = pidogeBalance;
-              document.getElementById("ttBalance").textContent = ttBalance;
-              document.getElementById("userLevel").textContent = userLevel;
-              document.getElementById("checkInProgress").textContent = `${checkInCount}/${levelMilestones[userLevel + 1] || 300} ngày để lên cấp ${userLevel + 1}`;
+            // Tạo phần thưởng
+            const pidogeReward = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
+            const ttReward = 0.7;
 
-              // Cập nhật hành tinh
-              const currentPlanet = planets[userLevel];
-              document.getElementById("planetName").textContent = currentPlanet.name;
-              document.getElementById("planetDescription").textContent = currentPlanet.description;
-              document.getElementById("planetImage").src = currentPlanet.image;
+            // Cập nhật số dư
+            const pidogeBalance = (data.pidogeBalance || 0) + pidogeReward;
+            const ttBalance = (data.ttBalance || 0) + ttReward;
 
-              // Cập nhật lịch sử điểm danh
-              updateCheckInHistory(checkInHistory);
+            // Cập nhật lịch sử điểm danh
+            const checkInHistory = data.checkInHistory || [];
+            const checkInDate = new Date().toLocaleString("vi-VN");
+            checkInHistory.push({ date: checkInDate, pidoge: pidogeReward, tt: ttReward });
 
-              showToast(`Điểm danh thành công! Nhận ${pidogeReward} PiDoge và ${ttReward} TT`);
+            // Cập nhật số ngày điểm danh
+            const checkInCount = (data.checkInCount || 0) + 1;
+
+            // Tính cấp độ
+            const levelMilestones = [0, 15, 35, 60, 100, 160, 220, 300];
+            let userLevel = 0;
+            for (let i = 0; i < levelMilestones.length; i++) {
+              if (checkInCount >= levelMilestones[i]) {
+                userLevel = i;
+              } else {
+                break;
+              }
             }
-          });
-        }, (error) => {
-          showToast("Lỗi khi tải dữ liệu!", "error");
-        });
+
+            // Lưu dữ liệu lên Firebase
+            userRef.set(
+              {
+                pidogeBalance,
+                ttBalance,
+                checkInCount,
+                lastCheckIn: now,
+                checkInHistory,
+                level: userLevel
+              },
+              (error) => {
+                if (error) {
+                  console.error("Error saving data to Firebase:", error);
+                  showToast("Lỗi khi lưu dữ liệu!", "error");
+                } else {
+                  // Cập nhật giao diện
+                  document.getElementById("pidogeBalance").textContent = pidogeBalance;
+                  document.getElementById("ttBalance").textContent = ttBalance;
+                  document.getElementById("userLevel").textContent = userLevel;
+                  document.getElementById("checkInProgress").textContent = `${checkInCount}/${
+                    levelMilestones[userLevel + 1] || 300
+                  } ngày để lên cấp ${userLevel + 1}`;
+
+                  // Cập nhật hành tinh
+                  const currentPlanet = planets[userLevel];
+                  document.getElementById("planetName").textContent = currentPlanet.name;
+                  document.getElementById("planetDescription").textContent = currentPlanet.description;
+                  document.getElementById("planetImage").src = currentPlanet.image;
+
+                  // Cập nhật lịch sử điểm danh
+                  updateCheckInHistory(checkInHistory);
+
+                  showToast(`Điểm danh thành công! Nhận ${pidogeReward} PiDoge và ${ttReward} TT`);
+                }
+              }
+            );
+          },
+          (error) => {
+            console.error("Error fetching data from Firebase:", error);
+            showToast("Lỗi khi tải dữ liệu!", "error");
+          }
+        );
       }
 
       // Cập nhật lịch sử điểm danh
       function updateCheckInHistory(checkInHistory) {
+        console.log("Updating check-in history:", checkInHistory);
         const historyDiv = document.getElementById("checkInHistory");
-        historyDiv.innerHTML = checkInHistory && checkInHistory.length
-          ? checkInHistory
-              .map((entry) => `<p>${entry.date}: ${entry.pidoge} PiDoge, ${entry.tt} TT</p>`)
-              .join("")
-          : "Chưa có lịch sử điểm danh.";
+        historyDiv.innerHTML =
+          checkInHistory && checkInHistory.length
+            ? checkInHistory.map((entry) => `<p>${entry.date}: ${entry.pidoge} PiDoge, ${entry.tt} TT</p>`).join("")
+            : "Chưa có lịch sử điểm danh.";
       }
 
       // Khởi tạo giao diện khi tải trang
       function initCheckIn() {
+        console.log("initCheckIn called");
         const urlParams = new URLSearchParams(window.location.search);
         const tagId = urlParams.get("tag_id");
         const planetImage = document.getElementById("planetImage");
@@ -830,39 +782,47 @@
         }
 
         const userRef = database.ref(`users/${tagId}`);
-        userRef.once("value", (snapshot) => {
-          const data = snapshot.val() || {};
-          const pidogeBalance = data.pidogeBalance || 0;
-          const ttBalance = data.ttBalance || 0;
-          const checkInCount = data.checkInCount || 0;
-          const levelMilestones = [0, 15, 35, 60, 100, 160, 220, 300];
-          let userLevel = 0;
-          for (let i = 0; i < levelMilestones.length; i++) {
-            if (checkInCount >= levelMilestones[i]) {
-              userLevel = i;
-            } else {
-              break;
+        userRef.once(
+          "value",
+          (snapshot) => {
+            const data = snapshot.val() || {};
+            const pidogeBalance = data.pidogeBalance || 0;
+            const ttBalance = data.ttBalance || 0;
+            const checkInCount = data.checkInCount || 0;
+            const levelMilestones = [0, 15, 35, 60, 100, 160, 220, 300];
+            let userLevel = 0;
+            for (let i = 0; i < levelMilestones.length; i++) {
+              if (checkInCount >= levelMilestones[i]) {
+                userLevel = i;
+              } else {
+                break;
+              }
             }
+
+            document.getElementById("pidogeBalance").textContent = pidogeBalance;
+            document.getElementById("ttBalance").textContent = ttBalance;
+            document.getElementById("userLevel").textContent = userLevel;
+            document.getElementById("checkInProgress").textContent = `${checkInCount}/${
+              levelMilestones[userLevel + 1] || 300
+            } ngày để lên cấp ${userLevel + 1}`;
+
+            const currentPlanet = planets[userLevel];
+            document.getElementById("planetName").textContent = currentPlanet.name;
+            document.getElementById("planetDescription").textContent = currentPlanet.description;
+            document.getElementById("planetImage").src = currentPlanet.image;
+
+            updateCheckInHistory(data.checkInHistory);
+          },
+          (error) => {
+            console.error("Error fetching init data:", error);
+            showToast("Lỗi khi tải dữ liệu!", "error");
           }
-
-          document.getElementById("pidogeBalance").textContent = pidogeBalance;
-          document.getElementById("ttBalance").textContent = ttBalance;
-          document.getElementById("userLevel").textContent = userLevel;
-          document.getElementById("checkInProgress").textContent = `${checkInCount}/${levelMilestones[userLevel + 1] || 300} ngày để lên cấp ${userLevel + 1}`;
-
-          const currentPlanet = planets[userLevel];
-          document.getElementById("planetName").textContent = currentPlanet.name;
-          document.getElementById("planetDescription").textContent = currentPlanet.description;
-          document.getElementById("planetImage").src = currentPlanet.image;
-
-          updateCheckInHistory(data.checkInHistory);
-        }, (error) => {
-          showToast("Lỗi khi tải dữ liệu!", "error");
-        });
+        );
       }
 
       // Show Toast Notification
       function showToast(message, type = "success") {
+        console.log("Showing toast:", message, type);
         const toast = document.getElementById("toast");
         const toastMessage = document.getElementById("toastMessage");
         toastMessage.textContent = message;
@@ -878,18 +838,22 @@
 
       // Load user data based on tag_id
       function loadUserData() {
+        console.log("loadUserData called");
         const urlParams = new URLSearchParams(window.location.search);
         const tagId = urlParams.get("tag_id");
         const userName = document.getElementById("userName");
         const walletAddress = document.getElementById("walletAddress");
         const avatar = document.getElementById("avatar");
 
+        console.log("Tag ID:", tagId);
         if (tagId && memberData[tagId]) {
           const member = memberData[tagId];
+          console.log("Member data:", member);
           userName.textContent = member.name;
           walletAddress.textContent = member.wallet_address;
           avatar.src = member.avatar;
         } else {
+          console.log("Invalid or missing tag_id");
           userName.textContent = "Không tìm thấy thông tin";
           walletAddress.textContent = "Không tìm thấy địa chỉ ví";
           avatar.src = "https://picsum.photos/80";
@@ -897,22 +861,20 @@
         }
 
         avatar.onload = () => {
+          console.log("Avatar loaded:", avatar.src);
           avatar.classList.add("loaded");
         };
         avatar.onerror = () => {
-          if (avatar.src !== "https://picsum.photos/seed/fallback/80") {
-            avatar.src = "https://picsum.photos/seed
-
-/fallback/80";
-          } else {
-            showToast("Không thể tải hình ảnh đại diện!", "error");
-            avatar.classList.add("loaded");
-          }
+          console.error("Avatar failed to load:", avatar.src);
+          avatar.src = "https://picsum.photos/seed/avatar/80";
+          avatar.classList.add("loaded");
+          showToast("Không thể tải hình ảnh đại diện!", "error");
         };
       }
 
       // Auto-check balance from URL
       function autoCheckBalanceFromURL() {
+        console.log("autoCheckBalanceFromURL called");
         const urlParams = new URLSearchParams(window.location.search);
         const walletAddress = urlParams.get("wallet");
         if (walletAddress) {
@@ -923,6 +885,7 @@
 
       // Check Balance (Redirect to Pi Block Explorer)
       function checkBalance() {
+        console.log("checkBalance called");
         const walletAddress = document.getElementById("walletAddress").textContent;
 
         if (!walletAddress || walletAddress === "Không tìm thấy địa chỉ ví") {
@@ -936,63 +899,71 @@
 
       // Initialize on page load
       document.addEventListener("DOMContentLoaded", () => {
-        loadUserData();
-        initCheckIn();
-        autoCheckBalanceFromURL();
+        console.log("DOM fully loaded");
+        try {
+          loadUserData();
+          initCheckIn();
+          autoCheckBalanceFromURL();
 
-        const darkModePreference = localStorage.getItem("darkMode");
-        if (darkModePreference === "enabled") {
-          document.body.classList.add("dark-mode");
-          document.getElementById("darkModeToggle").textContent =
-            "Chuyển chế độ sáng";
+          const darkModePreference = localStorage.getItem("darkMode");
+          if (darkModePreference === "enabled") {
+            document.body.classList.add("dark-mode");
+            document.getElementById("darkModeToggle").textContent = "Chuyển chế độ sáng";
+          }
+
+          // Lazy load TradingView Widget
+          const tradingViewSection = document.getElementById("tradingview_chart");
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (entries[0].isIntersecting) {
+                console.log("Loading TradingView widget");
+                new TradingView.widget({
+                  width: "100%",
+                  height: 250,
+                  symbol: "OKX:PIUSDT",
+                  interval: "D",
+                  timezone: "Etc/UTC",
+                  theme: "light",
+                  style: "1",
+                  locale: "en",
+                  toolbar_bg: "#f1f3f6",
+                  enable_publishing: false,
+                  allow_symbol_change: true,
+                  container_id: "tradingview_chart"
+                });
+                observer.disconnect();
+              }
+            },
+            { rootMargin: "100px" }
+          );
+          observer.observe(tradingViewSection);
+        } catch (error) {
+          console.error("Initialization error:", error);
+          showToast("Lỗi khởi tạo trang!", "error");
         }
-
-        // Lazy load TradingView Widget
-        const tradingViewSection = document.getElementById("tradingview_chart");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0].isIntersecting) {
-              new TradingView.widget({
-                width: "100%",
-                height: 250,
-                symbol: "OKX:PIUSDT",
-                interval: "D",
-                timezone: "Etc/UTC",
-                theme: "light",
-                style: "1",
-                locale: "en",
-                toolbar_bg: "#f1f3f6",
-                enable_publishing: false,
-                allow_symbol_change: true,
-                container_id: "tradingview_chart",
-              });
-              observer.disconnect();
-            }
-          },
-          { rootMargin: "100px" }
-        );
-        observer.observe(tradingViewSection);
       });
 
       // Copy Wallet Address
       function copyWalletAddress() {
+        console.log("copyWalletAddress called");
         const walletAddress = document.getElementById("walletAddress").textContent;
         if (walletAddress === "Không tìm thấy địa chỉ ví") {
           showToast("Không có địa chỉ ví để sao chép!", "error");
           return;
         }
-        navigator.clipboard
-          .writeText(walletAddress)
-          .then(() => {
+        navigator.clipboard.writeText(walletAddress).then(
+          () => {
             showToast("Đã sao chép địa chỉ ví!");
-          })
-          .catch(() => {
+          },
+          () => {
             showToast("Không thể sao chép địa chỉ ví!", "error");
-          });
+          }
+        );
       }
 
       // Show Withdraw Modal
       function showWithdrawModal() {
+        console.log("showWithdrawModal called");
         const withdrawModal = document.getElementById("withdrawModal");
         withdrawModal.classList.remove("hidden");
         withdrawModal.classList.add("show");
@@ -1000,6 +971,7 @@
 
       // Hide Withdraw Modal
       function hideWithdrawModal() {
+        console.log("hideWithdrawModal called");
         const withdrawModal = document.getElementById("withdrawModal");
         withdrawModal.classList.remove("show");
         withdrawModal.classList.add("hidden");
@@ -1007,6 +979,7 @@
 
       // Withdraw Pi (Mock)
       function withdrawPi() {
+        console.log("withdrawPi called");
         const amount = parseFloat(document.getElementById("withdrawAmount").value);
         const password = document.getElementById("withdrawPassword").value;
         const withdrawStatus = document.getElementById("withdrawStatus");
@@ -1032,6 +1005,7 @@
 
       // Safety Check (Mock)
       function checkSafety() {
+        console.log("checkSafety called");
         const checkButton = document.getElementById("checkButton");
         const loadingSpinner = document.getElementById("loadingSpinner");
         const safetyResult = document.getElementById("safetyResult");
@@ -1052,22 +1026,16 @@
           safetyResult.classList.add(isSafe ? "safe" : "unsafe");
           safetyStatus.textContent = isSafe ? "An toàn" : "Không an toàn";
           safetyScore.textContent = isSafe ? "85" : "30";
-          safetyWarnings.textContent = isSafe
-            ? "Không có cảnh báo"
-            : "Trang web có thể không đáng tin cậy";
+          safetyWarnings.textContent = isSafe ? "Không có cảnh báo" : "Trang web có thể không đáng tin cậy";
 
           checkButton.disabled = false;
-          showToast(
-            isSafe
-              ? "Kiểm tra thành công: An toàn!"
-              : "Kiểm tra thành công: Không an toàn!",
-            isSafe ? "success" : "error"
-          );
+          showToast(isSafe ? "Kiểm tra thành công: An toàn!" : "Kiểm tra thành công: Không an toàn!", isSafe ? "success" : "error");
         }, 1500);
       }
 
       // Clear Safety Check Form
       function clearForm() {
+        console.log("clearForm called");
         document.getElementById("safetyUrl").value = "";
         document.getElementById("safetyResult").classList.add("hidden");
         showToast("Đã xóa biểu mẫu!");
@@ -1075,11 +1043,10 @@
 
       // Dark Mode Toggle
       document.getElementById("darkModeToggle").addEventListener("click", () => {
+        console.log("Dark mode toggle clicked");
         document.body.classList.toggle("dark-mode");
         const isDarkMode = document.body.classList.contains("dark-mode");
-        document.getElementById("darkModeToggle").textContent = isDarkMode
-          ? "Chuyển chế độ sáng"
-          : "Chuyển chế độ tối";
+        document.getElementById("darkModeToggle").textContent = isDarkMode ? "Chuyển chế độ sáng" : "Chuyển chế độ tối";
         localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
       });
     </script>
