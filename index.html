@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pi Thịnh Vượng </title>
+    <title>Pi Thịnh Vượng</title>
     <!-- Google Fonts for Inter and Orbitron -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700&display=swap"
@@ -201,34 +201,6 @@
         opacity: 0;
       }
 
-      /* Spinner Animation */
-      .spinner {
-        border: 4px solid #A0A0C0;
-        border-top: 4px solid #00D1FF;
-        border-radius: 50%;
-        width: 28px;
-        height: 28px;
-        animation: spin 1s linear infinite;
-        display: none;
-        box-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      /* Safety Status Colors */
-      .safe {
-        color: #00FF99;
-        text-shadow: 0 0 8px rgba(0, 255, 153, 0.5);
-        font-weight: 600;
-      }
-      .unsafe {
-        color: #FF3D3D;
-        text-shadow: 0 0 8px rgba(255, 61, 61, 0.5);
-        font-weight: 600;
-      }
-
       /* Toast Animation */
       #toast.show {
         transform: translateX(0);
@@ -369,7 +341,7 @@
     <div class="container mx-auto p-6 max-w-md">
       <!-- Pi Universe Hub Title Card -->
       <div class="title-card shadow-xl rounded-2xl mb-8">
-        <h1>Pi Thịnh Vượng </h1>
+        <h1>Pi Thịnh Vượng</h1>
         <p>Khám phá Tương Lai của Pi</p>
       </div>
 
@@ -428,47 +400,6 @@
       <div class="card shadow-xl rounded-2xl p-8 mb-8">
         <h3 class="text-xl font-bold mb-6">Giá Pi (USD)</h3>
         <div id="tradingview_chart"></div>
-      </div>
-
-      <!-- Safety Check Section -->
-      <div class="card shadow-xl rounded-2xl p-8 mb-8">
-        <h3 class="text-xl font-bold mb-6">Kiểm tra Web/Ứng dụng</h3>
-        <select id="checkType" class="w-full p-3 border rounded-lg mb-6 focus:ring-2 focus:ring-indigo-300 transition-all duration-200">
-          <option value="website">Trang web</option>
-          <option value="app">Ứng dụng</option>
-        </select>
-        <input
-          id="safetyUrl"
-          type="text"
-          class="w-full p-3 border rounded-lg mb-6 focus:ring-2 focus:ring-indigo-300 transition-all duration-200"
-          placeholder="Nhập URL (ví dụ: https://example.com hoặc link Google Play)"
-        />
-        <div class="flex space-x-4">
-          <button
-            onclick="checkSafety()"
-            id="checkButton"
-            class="flex-1 bg-indigo-500 text-white py-3 px-4 rounded-lg btn hover:bg-indigo-600"
-          >
-            Kiểm tra
-          </button>
-          <button
-            onclick="clearForm()"
-            class="flex-1 bg-gray-300 text-gray-800 py-3 px-4 rounded-lg btn hover:bg-gray-400"
-          >
-            Xóa
-          </button>
-        </div>
-        <div id="loadingSpinner" class="spinner mx-auto mt-6"></div>
-        <div id="safetyResult" class="mt-6 hidden">
-          <p class="text-base font-bold flex items-center">
-            Kết quả: <span id="safetyStatus" class="ml-2"></span>
-            <svg id="statusIcon" class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-          </p>
-          <p class="text-base">Điểm tin cậy: <span id="safetyScore"></span>/100</p>
-          <p class="text-base">Cảnh báo: <span id="safetyWarnings"></span></p>
-        </div>
       </div>
 
       <!-- Support Section -->
@@ -952,44 +883,6 @@
             showToast("Không thể sao chép địa chỉ ví!", "error");
           }
         );
-      }
-
-      // Safety Check (Mock)
-      function checkSafety() {
-        console.log("checkSafety called");
-        const checkButton = document.getElementById("checkButton");
-        const loadingSpinner = document.getElementById("loadingSpinner");
-        const safetyResult = document.getElementById("safetyResult");
-        const safetyStatus = document.getElementById("safetyStatus");
-        const safetyScore = document.getElementById("safetyScore");
-        const safetyWarnings = document.getElementById("safetyWarnings");
-
-        checkButton.disabled = true;
-        loadingSpinner.style.display = "block";
-        safetyResult.classList.add("hidden");
-
-        setTimeout(() => {
-          loadingSpinner.style.display = "none";
-          safetyResult.classList.remove("hidden");
-
-          const isSafe = Math.random() > 0.5;
-          safetyResult.classList.remove("safe", "unsafe");
-          safetyResult.classList.add(isSafe ? "safe" : "unsafe");
-          safetyStatus.textContent = isSafe ? "An toàn" : "Không an toàn";
-          safetyScore.textContent = isSafe ? "85" : "30";
-          safetyWarnings.textContent = isSafe ? "Không có cảnh báo" : "Trang web có thể không đáng tin cậy";
-
-          checkButton.disabled = false;
-          showToast(isSafe ? "Kiểm tra thành công: An toàn!" : "Kiểm tra thành công: Không an toàn!", isSafe ? "success" : "error");
-        }, 1500);
-      }
-
-      // Clear Safety Check Form
-      function clearForm() {
-        console.log("clearForm called");
-        document.getElementById("safetyUrl").value = "";
-        document.getElementById("safetyResult").classList.add("hidden");
-        showToast("Đã xóa biểu mẫu!");
       }
     </script>
   </body>
