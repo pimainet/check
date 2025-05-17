@@ -24,24 +24,17 @@
         overscroll-behavior: contain;
       }
 
-      /* Sci-Fi Cyberpunk Background */
+      /* Simplified Background for Mobile */
       body {
         background: linear-gradient(135deg, #0A0A0A, #1A1A2E, #2E2E4D);
         position: relative;
         overflow-x: hidden;
-        animation: gradientShift 12s ease infinite;
         color: #F5F5F5;
         font-family: 'Inter', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-      }
-
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
       }
 
       /* Ensure Container is Centered */
@@ -55,64 +48,31 @@
       /* Pi Universe Hub Title Card */
       .title-card {
         background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(8px);
         border: 2px solid rgba(0, 209, 255, 0.5);
         border-radius: 1rem;
         position: relative;
         overflow: hidden;
         padding: 2.5rem;
         text-align: center;
-        animation: glowPulse 2s ease-in-out infinite, borderGlow 4s ease-in-out infinite;
-        box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
         margin-bottom: 2rem;
       }
       .title-card h1 {
         font-family: 'Orbitron', sans-serif;
         font-size: 2.75rem;
         color: #00D1FF;
-        text-shadow: 0 0 15px rgba(0, 209, 255, 0.8), 0 0 30px rgba(179, 0, 255, 0.6);
+        text-shadow: 0 0 10px rgba(0, 209, 255, 0.8);
         margin-bottom: 0.75rem;
         letter-spacing: 2px;
         text-transform: uppercase;
-        animation: flicker 3s infinite;
       }
       .title-card p {
         font-size: 1.25rem;
         color: #F5F5F5;
-        text-shadow: 0 0 8px rgba(179, 0, 255, 0.5);
         font-weight: 500;
         opacity: 0;
         animation: fadeIn 1s ease-in 1s forwards;
-      }
-      .title-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 1px, transparent 1px);
-        background-size: 10px 10px;
-        animation: particleShift 20s linear infinite;
-        opacity: 0.3;
-      }
-      @keyframes particleShift {
-        0% { background-position: 0 0; }
-        100% { background-position: 100px 100px; }
-      }
-      @keyframes glowPulse {
-        0% { box-shadow: 0 0 20px rgba(0, 209, 255, 0.3); }
-        50% { box-shadow: 0 0 40px rgba(0, 209, 255, 0.6); }
-        100% { box-shadow: 0 0 20px rgba(0, 209, 255, 0.3); }
-      }
-      @keyframes borderGlow {
-        0% { border-color: rgba(0, 209, 255, 0.5); }
-        50% { border-color: rgba(179, 0, 255, 0.5); }
-        100% { border-color: rgba(0, 209, 255, 0.5); }
-      }
-      @keyframes flicker {
-        0%, 19.9%, 22%, 62.9%, 64%, 64.9%, 70%, 100% { opacity: 1; }
-        20%, 21.9%, 63%, 63.9%, 65%, 69.9% { opacity: 0.6; }
       }
       @keyframes fadeIn {
         to { opacity: 1; }
@@ -121,17 +81,16 @@
       /* Glassmorphism Effect for Cards */
       .card {
         background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(8px);
         border: 1px solid rgba(0, 209, 255, 0.4);
         border-radius: 1rem;
         padding: 2rem;
         margin-bottom: 2rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 209, 255, 0.2);
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 209, 255, 0.2);
       }
       .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 40px rgba(179, 0, 255, 0.4);
+        transform: translateY(-4px);
       }
       .card p, .card span {
         color: #F5F5F5;
@@ -142,7 +101,7 @@
       }
       .card h2, .card h3, .card h4 {
         color: #B300FF;
-        text-shadow: 0 0 10px rgba(179, 0, 255, 0.6);
+        text-shadow: 0 0 8px rgba(179, 0, 255, 0.6);
         font-weight: 800;
         margin-bottom: 1rem;
       }
@@ -159,46 +118,31 @@
       /* Wallet Address Specific Styles */
       #walletAddress {
         display: block;
-        font-size: 0.875rem; /* text-sm */
+        font-size: 0.875rem;
         overflow-wrap: anywhere;
         word-break: break-all;
         hyphens: auto;
         max-width: 100%;
       }
 
-      /* Button Ripple Effect with Neon Glow */
+      /* Optimized Button Styles */
       .btn {
         position: relative;
-        overflow: hidden;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.75rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        transition: transform 0.2s ease, background-color 0.2s ease;
         background: linear-gradient(45deg, #00D1FF, #B300FF);
         color: #0A0A0A;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 1rem;
         border: 1px solid transparent;
       }
       .btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(0, 209, 255, 0.7);
-        border: 1px solid #00D1FF;
+        transform: scale(1.03);
+        background: linear-gradient(45deg, #33DDFF, #CC33FF);
       }
-      .btn::after {
-        content: "";
-        position: absolute;
-        background: rgba(255, 255, 255, 0.4);
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.4s ease;
-      }
-      .btn:active::after {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
+      .btn:active {
+        transform: scale(0.98);
       }
 
       /* Toast Animation */
@@ -216,13 +160,13 @@
         padding: 1rem 1.5rem;
         border-radius: 0.75rem;
         border: 1px solid rgba(0, 209, 255, 0.5);
-        box-shadow: 0 4px 15px rgba(0, 209, 255, 0.4);
+        box-shadow: 0 4px 10px rgba(0, 209, 255, 0.3);
       }
 
       /* Input Focus Animation */
       input:focus,
       select:focus {
-        box-shadow: 0 0 12px rgba(0, 209, 255, 0.6);
+        box-shadow: 0 0 8px rgba(0, 209, 255, 0.5);
         border-color: #00D1FF;
       }
 
@@ -233,16 +177,14 @@
         border-radius: 10px;
         border: 2px solid #00D1FF;
         object-fit: cover;
-        transition: all 0.3s ease;
-        box-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
+        transition: transform 0.2s ease;
+        box-shadow: 0 0 8px rgba(0, 209, 255, 0.2);
       }
       .avatar.loaded {
         opacity: 1;
       }
       .avatar:hover {
-        transform: scale(1.1) rotate(3deg);
-        box-shadow: 0 10px 20px rgba(179, 0, 255, 0.5);
-        border: 2px solid #B300FF;
+        transform: scale(1.05);
       }
 
       /* Planet Image Styles */
@@ -252,16 +194,16 @@
         object-fit: cover;
         border-radius: 10px;
         border: 2px solid #00D1FF;
-        box-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
+        box-shadow: 0 0 8px rgba(0, 209, 255, 0.2);
       }
       #planetImage:hover {
-        box-shadow: 0 0 15px rgba(179, 0, 255, 0.6);
+        box-shadow: 0 0 10px rgba(179, 0, 255, 0.4);
       }
 
       /* Support Section Specific Styles */
       .support-card {
-        padding: 2.5rem;
-        box-shadow: 0 6px 25px rgba(0, 209, 255, 0.3);
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 209, 255, 0.2);
       }
       .support-card p {
         font-size: 1.125rem;
@@ -269,24 +211,17 @@
       }
       .support-card a {
         color: #00D1FF;
-        text-shadow: 0 0 6px rgba(0, 209, 255, 0.4);
-        transition: transform 0.2s ease, text-shadow 0.2s ease;
+        transition: color 0.2s ease;
       }
       .support-card a:hover {
-        transform: scale(1.05);
-        text-shadow: 0 0 12px rgba(0, 209, 255, 0.8);
+        color: #33DDFF;
       }
       .support-card .video-container {
         position: relative;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        padding-top: 56.25%;
         border: 2px solid #00D1FF;
         border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
-        transition: box-shadow 0.3s ease;
-        overflow: hidden;
-      }
-      .support-card .video-container:hover {
-        box-shadow: 0 0 20px rgba(179, 0, 255, 0.5);
+        box-shadow: 0 0 8px rgba(0, 209, 255, 0.2);
       }
       .support-card .video-container iframe {
         position: absolute;
@@ -320,11 +255,12 @@
         .support-card p {
           font-size: 1rem;
         }
-        .support-card .video-container {
-          padding-top: 56.25%; /* Maintain 16:9 */
+        .btn {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
         }
         #walletAddress {
-          font-size: 0.75rem; /* text-xs */
+          font-size: 0.75rem;
         }
       }
 
@@ -367,10 +303,10 @@
           </p>
         </div>
         <div class="flex space-x-4">
-          <button onclick="copyWalletAddress()" class="flex-1 bg-indigo-500 text-white py-3 px-4 rounded-lg btn hover:bg-indigo-600">
+          <button onclick="copyWalletAddress()" class="flex-1 btn">
             Sao chép ví
           </button>
-          <button onclick="checkBalance()" class="flex-1 bg-green-500 text-white py-3 px-4 rounded-lg btn hover:bg-green-600">
+          <button onclick="checkBalance()" class="flex-1 btn">
             Kiểm tra số dư
           </button>
         </div>
